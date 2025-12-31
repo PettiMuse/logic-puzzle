@@ -161,3 +161,15 @@ body{
   white-space: nowrap;
 }
 
+/* FORCE vertical column headers */
+.grid > .cell.header:not(.rowlabel){
+  writing-mode: vertical-rl !important;
+  transform: rotate(180deg) !important;
+  height: 140px !important;
+  white-space: nowrap;
+  padding: 6px 0;
+  align-items: flex-end;
+  justify-content: center;
+  font-size: 13px;
+}
+
