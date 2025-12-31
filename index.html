@@ -4,11 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Logic Puzzle</title>
-
-  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#cfd9ee">
-
-  <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -43,12 +38,13 @@
   </section>
 </div>
 
-<!-- FORCE-FRESH SCRIPT LOAD -->
-<script src="script.js?v=2001" defer></script>
+<!-- PROOF inline JS runs (cannot be cached separately) -->
+<script>
+  document.getElementById("saveStatus").textContent = "INLINE JS RUNNING ✅";
+</script>
 
+<!-- Load your puzzle JS -->
+<script src="script.js?v=7777" defer></script>
 
 </body>
 </html>
-
-
-
