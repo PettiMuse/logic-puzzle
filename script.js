@@ -1,3 +1,7 @@
+window.addEventListener("DOMContentLoaded", () => {
+  const s = document.getElementById("saveStatus");
+  if (s) s.textContent = "JS RUNNING ✅";
+});
 // =====================
 // PUZZLE DATA
 // =====================
@@ -44,5 +48,6 @@ function buildMatrixGrid({
   bandTitleLeft = "",
   bandTitleTop = "",
   labelWidth = 14
+
 
 
