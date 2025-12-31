@@ -15,6 +15,136 @@ body{
   color: #111;
 }
 
-/* Top header */
+/* Header */
 .top{
-  padding: 14
+  padding: 14px 14px 8px;
+  text-align: center;
+}
+.top h1{ margin: 0 0 6px; font-size: 42px; }
+.hint{ margin: 0; opacity: .75; font-size: 1rem; }
+
+.controls{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0 0;
+  flex-wrap: wrap;
+}
+.controls button{
+  padding: 10px 14px;
+  border: 1px solid #8f9bb8;
+  background: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.controls button:hover{ filter: brightness(0.97); }
+
+.status{ font-weight: 700; }
+.flash{ animation: flash 0.4s ease; }
+@keyframes flash{
+  from{ transform: scale(1.03); }
+  to{ transform: scale(1); }
+}
+
+/* Layout */
+.wrap{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.panel{
+  background: white;
+  border: 1px solid #c7cde0;
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+
+.panel-title{
+  font-weight: 800;
+  margin: 0 0 10px;
+}
+
+.bottom-row{
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.panel.small .panel-title{
+  margin-bottom: 8px;
+}
+
+/* ✅ GRID VISIBILITY + SCROLL */
+.logic-grid{
+  overflow-x: auto;      /* lets wide grids scroll on phones */
+  overflow-y: hidden;
+  padding-bottom: 6px;
+}
+
+/* ✅ THE ACTUAL GRID */
+.grid{
+  display: grid;         /* IMPORTANT */
+  gap: 0;
+  border: 1px solid var(--border);
+  background: white;
+  width: max-content;    /* grid can be wider than card */
+}
+
+/* ✅ CELLS */
+.cell{
+  width: var(--cell);
+  height: var(--cell);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 1;
+  user-select: none;
+}
+
+.rowlabel{
+  width: auto;
+  min-width: 120px;
+  justify-content: flex-start;
+  padding-left: 10px;
+  font-weight: 800;
+  background: var(--header);
+}
+
+.header{
+  background: var(--header);
+  font-weight: 800;
+}
+
+.band{
+  background: var(--subheader);
+  font-weight: 800;
+}
+
+.clickable{
+  cursor: pointer;
+  background: #fff;
+}
+.clickable:hover{
+  background: #f0f3ff;
+}
+
+.x{ color: #d11; font-weight: 900; }
+.check{ color: #0a8f3c; font-weight: 900; }
+
+/* thicker divider between categories */
+.separator{
+  border-right: 4px solid #6d7aa5 !important;
+}
+
+/* Mobile: stack the two small grids */
+@media (max-width: 900px){
+  .bottom-row{ grid-template-columns: 1fr; }
+  .top h1{ font-size: 34px; }
+}
