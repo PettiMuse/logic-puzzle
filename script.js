@@ -1,4 +1,3 @@
-document.getElementById("saveStatus").textContent = "SCRIPT.JS RUNNING ✅";
 // =====================
 // PUZZLE DATA
 // =====================
@@ -243,4 +242,5 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
