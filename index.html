@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Logic Puzzle</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#cfd9ee">
+
+  <!-- iOS support -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Logic Puzzle">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<header class="top">
+  <h1>Logic Puzzle</h1>
+  <p class="hint">Tap a cell: blank → ❌ → ✅</p>
+
+  <div class="controls">
+    <button id="btnClear" type="button">Clear Puzzle</button>
+    <span id="saveStatus" class="status">Saved</span>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="panel">
+    <div class="panel-title">Main Grid</div>
+    <div id="mainGrid" class="logic-grid"></div>
+  </section>
+
+  <section class="bottom-row">
+    <div class="panel small">
+      <div class="panel-title">Pastry × Treat</div>
+      <div id="pastryTreatGrid" class="logic-grid"></div>
+    </div>
+
+    <div class="panel small">
+      <div class="panel-title">Treat × Flavour</di
