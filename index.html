@@ -43,4 +43,23 @@
     </div>
 
     <div class="panel small">
-      <div class="panel-title">Treat × Flavour</di
+            <div class="panel-title">Treat × Flavour</div>
+      <div id="treatFlavourGrid" class="logic-grid"></div>
+    </div>
+  </section>
+</div>
+
+<script src="script.js"></script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./sw.js");
+    });
+  }
+</script>
+
+</body>
+</html>
+
+
