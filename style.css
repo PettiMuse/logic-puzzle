@@ -148,3 +148,16 @@ body{
   .bottom-row{ grid-template-columns: 1fr; }
   .top h1{ font-size: 34px; }
 }
+/* Make top column headers vertical so they don't overlap */
+.grid .cell.header:not(.rowlabel){
+  height: 130px;              /* taller header row */
+  align-items: flex-end;      /* text sits near the bottom */
+  justify-content: center;
+  padding: 6px 0;
+  font-size: 13px;
+
+  writing-mode: vertical-rl;  /* vertical text */
+  transform: rotate(180deg);  /* makes it read top-to-bottom */
+  white-space: nowrap;
+}
+
