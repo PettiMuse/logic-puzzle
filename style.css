@@ -6,7 +6,8 @@
   --bg: #f6f7fb;
 }
 
-* { box-sizing: border-box; }
+*{ box-sizing: border-box; }
+
 body{
   margin: 0;
   font-family: Arial, sans-serif;
@@ -14,29 +15,6 @@ body{
   color: #111;
 }
 
+/* Top header */
 .top{
-  padding: 14px 14px 8px;
-  text-align: center;
-}
-.top h1{ margin: 0 0 6px; }
-.hint{ margin: 0; opacity: .75; font-size: 0.95rem; }
-
-.controls{
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 0 0;
-  flex-wrap: wrap;
-}
-
-.controls button{
-  padding: 8px 12px;
-  border: 1px solid #8f9bb8;
-  background: white;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 700;
-}
-
-.controls button:hov
+  padding: 14
