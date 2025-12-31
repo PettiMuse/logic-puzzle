@@ -1,3 +1,4 @@
+alert("script.js is running");
 // =====================
 // PUZZLE DATA
 // =====================
@@ -44,3 +45,4 @@ function buildMatrixGrid({
   bandTitleLeft = "",
   bandTitleTop = "",
   labelWidth = 14
+
