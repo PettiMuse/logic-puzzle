@@ -1,8 +1,8 @@
 :root{
-  --bandHeight: 72px;
+  --bandHeight: 72px;  /* MUST match .cell.band height */
   --cell: 44px;
   --divider: 4px;
-  --labelw: 140px;  /* main grid label width (matches JS labelWidth) */
+  --labelw: 140px;
   --border: #b9b9b9;
   --header: #dfe6f3;
   --subheader: #cfd9ee;
@@ -280,6 +280,45 @@ body{
 
   .side-label{ left: -34px; }
 }
+/* ================= FIX DIVIDERS ================= */
+
+/* 1) NEVER draw a thick divider inside the band cells (prevents cutting the words) */
+.cell.band.band-divider{
+  border-right: none !important;
+  box-shadow: none !important;
+}
+
+/* 2) Draw the thick vertical dividers ONLY BELOW the band row (so Flavour/Treat words stay clean),
+      but ON TOP of the grid so they’re clearly visible all the way down. */
+#mainGrid .grid::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  /* START BELOW THE BAND */
+  top: var(--bandHeight);
+  bottom: 0;
+
+  pointer-events: none;
+  z-index: 999;  /* put dividers above the cells so they are visible */
+
+  background-repeat: no-repeat;
+  background-image:
+    linear-gradient(to right,
+      transparent calc(var(--labelw) + (5 * var(--cell))),
+      var(--dividerColor) calc(var(--labelw) + (5 * var(--cell))),
+      var(--dividerColor) calc(var(--labelw) + (5 * var(--cell)) + var(--divider)),
+      transparent calc(var(--labelw) + (5 * var(--cell)) + var(--divider))
+    ),
+    linear-gradient(to right,
+      transparent calc(var(--labelw) + (10 * var(--cell))),
+      var(--dividerColor) calc(var(--labelw) + (10 * var(--cell))),
+      var(--dividerColor) calc(var(--labelw) + (10 * var(--cell)) + var(--divider)),
+      transparent calc(var(--labelw) + (10 * var(--cell)) + var(--divider))
+    );
+}
+
 
 
 
