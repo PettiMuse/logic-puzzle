@@ -240,7 +240,11 @@ body{
 #mainGrid .grid::before{
   content: "";
   position: absolute;
-  inset: 0;                 /* top/right/bottom/left = 0 */
+  left: 0;
+  right: 0;
+  top: var(--bandHeight);   /* START BELOW THE BAND */
+  bottom: 0;
+
   pointer-events: none;
   z-index: 1;
   background-repeat: no-repeat;
@@ -258,6 +262,7 @@ body{
       transparent calc(var(--labelw) + (10 * var(--cell)) + var(--divider))
     );
 }
+
 
 #mainGrid .grid > .cell.band{
   position: relative;
@@ -283,10 +288,8 @@ body{
   border-right: var(--divider) solid var(--dividerColor);
 }
 
-/* remove the thin grey border so only the thick divider shows */
-.cell.band.band-divider{
-  border-right: var(--divider) solid var(--dividerColor) !important;
-}
+
+
 
 
 
