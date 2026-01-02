@@ -266,19 +266,32 @@ grids.main = buildMatrixGrid({
 
 
 // Treat × Pastry grid changed to “all rows down the left”
-const PASTRY_TREAT_ROWS = [...PASTRIES, ...TREATS];
+// ===== Mini grid under the main one (like the newspaper) =====
 
+// Pastry × Treat  (rows: pastries, columns: treats)
 grids.pastryTreat = buildMatrixGrid({
   mountId: "pastryTreatGrid",
-  rowLabels: PASTRY_TREAT_ROWS,
-  colLabels: Array(FLAVOURS.length).fill(""),
-  bandTitleLeft: "",
-  bandTitleTop: "",
-  labelWidth: 140,
-  exclusive: false,
-  showColHeaders: false,
+  rowLabels: PASTRIES,   // Choux..Shortcrust DOWN the left
+  colLabels: TREATS,     // Eclair..Turnover ACROSS the top
+  bandTitleLeft: "Pastry",
+  bandTitleTop: "Treat",
+  labelWidth: 120,
+  exclusive: true,
   onAnyChange: saveAll
 });
+
+// Treat × Flavour (rows: treats, columns: flavours)
+grids.treatFlavour = buildMatrixGrid({
+  mountId: "treatFlavourGrid",
+  rowLabels: TREATS,     // Eclair..Turnover DOWN the left
+  colLabels: FLAVOURS,   // Apple..Spinach ACROSS the top
+  bandTitleLeft: "Treat",
+  bandTitleTop: "Flavour",
+  labelWidth: 120,
+  exclusive: true,
+  onAnyChange: saveAll
+});
+
 
 
 // Treat × Flavour grid (you need this back)
@@ -307,6 +320,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
