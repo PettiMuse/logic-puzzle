@@ -87,8 +87,8 @@ if (bandTitleTop || bandTitleLeft) {
 }
 
 
-  // Column headers (skip if explicitly disabled)
-if (colLabels.length && colLabels[0] !== "__NO_HEADERS__") {
+ // Column headers
+if (showColHeaders) {
   grid.appendChild(makeCell("", ["cell", "header", "rowlabel"]));
   colLabels.forEach((label, c) => {
     const h = makeCell(label, ["cell", "header"]);
@@ -96,6 +96,7 @@ if (colLabels.length && colLabels[0] !== "__NO_HEADERS__") {
     grid.appendChild(h);
   });
 }
+
 
 
   // Rows
@@ -264,6 +265,7 @@ grids.treatFlavour = buildMatrixGrid({
   labelWidth: 120,
   onAnyChange: saveAll
 });
+
 
 
 
