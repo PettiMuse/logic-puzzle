@@ -91,7 +91,7 @@ body{
   display: grid;         /* IMPORTANT */
   gap: 0;
   border: 1px solid var(--border);
-  background: white;
+   background-color: white;
   width: max-content;    /* grid can be wider than card */
 }
 
@@ -190,8 +190,8 @@ body{
       transparent 0,
       transparent calc(140px + (5 * var(--cell))),
       #6d7aa5 calc(140px + (5 * var(--cell))),
-      #6d7aa5 calc(140px + (5 * var(--cell)) + 4px),
-      transparent calc(140px + (5 * var(--cell)) + 4px)
+      #6d7aa5 calc(140px + (5 * var(--cell)) + 6px),
+      transparent calc(140px + (5 * var(--cell)) + 6px)
     ),
     linear-gradient(to right,
       transparent 0,
@@ -201,5 +201,6 @@ body{
       transparent calc(140px + (10 * var(--cell)) + 4px)
     );
 }
+
 
 
