@@ -228,13 +228,19 @@ grids.main = buildMatrixGrid({
 
 grids.pastryTreat = buildMatrixGrid({
   mountId: "pastryTreatGrid",
-  rowLabels: PASTRIES,
-  colLabels: TREATS,
-  bandTitleLeft: "Pastry",
-  bandTitleTop: "Treat",
+
+  // SWAPPED: Treats go down the left as rows
+  rowLabels: TREATS,
+
+  // Pastries go across the top as columns
+  colLabels: PASTRIES,
+
+  bandTitleLeft: "Treat",
+  bandTitleTop: "Pastry",
   labelWidth: 120,
   onAnyChange: saveAll
 });
+
 
 grids.treatFlavour = buildMatrixGrid({
   mountId: "treatFlavourGrid",
@@ -260,6 +266,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
