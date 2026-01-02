@@ -226,19 +226,12 @@ body{
 #mainGrid .grid{
   position: relative;
 }
-top: 0;
-  bottom: 0;
-  pointer-events: none;
-  z-index: 1;
+
 /* ================= FULL-HEIGHT DIVIDERS (START BELOW BAND ONLY) ================= */
 #mainGrid .grid::before{
   content: "";
   position: absolute;
-  left: 0;
-  right: 0;
-
- top: 0;
-  bottom: 0;
+  inset: 0;                 /* top/right/bottom/left = 0 */
   pointer-events: none;
   z-index: 1;
   background-repeat: no-repeat;
@@ -255,6 +248,12 @@ top: 0;
       var(--dividerColor) calc(var(--labelw) + (10 * var(--cell)) + var(--divider)),
       transparent calc(var(--labelw) + (10 * var(--cell)) + var(--divider))
     );
+}
+
+#mainGrid .grid > .cell.band{
+  position: relative;
+  z-index: 20;
+  background: #fff;
 }
 
 /* Mobile */
@@ -279,6 +278,7 @@ top: 0;
 .cell.band.band-divider{
   border-right: var(--divider) solid var(--dividerColor) !important;
 }
+
 
 
 
