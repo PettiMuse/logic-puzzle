@@ -277,6 +277,10 @@ body{
   z-index: 20;
   background: #fff;
 }
+/* Hide the "Treat × Pastry" title */
+.block.pastryTreat .block-title{
+  display: none !important;
+}
 
 /* Mobile */
 @media (max-width: 900px){
@@ -337,6 +341,7 @@ body{
   align-items: center !important;
   justify-content: center !important;
 }
+
 
 
 
