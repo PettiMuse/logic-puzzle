@@ -240,19 +240,21 @@ const PASTRY_TREAT_ROWS = [...PASTRIES, ...TREATS];
 
 grids.pastryTreat = buildMatrixGrid({
   mountId: "pastryTreatGrid",
-
-  // ALL rows down the left
   rowLabels: PASTRY_TREAT_ROWS,
 
-  // magic flag → NO header row at all
-  colLabels: ["__NO_HEADERS__"],
+  // ✅ 5 columns wide (Apple..Spinach width)
+  colLabels: Array(FLAVOURS.length).fill(""),
 
   bandTitleLeft: "",
   bandTitleTop: "",
   labelWidth: 140,
+
   exclusive: false,
+  showColHeaders: false,   // ✅ removes the blank header row
+
   onAnyChange: saveAll
 });
+
 
 
 // Treat × Flavour grid (you need this back)
@@ -265,6 +267,7 @@ grids.treatFlavour = buildMatrixGrid({
   labelWidth: 120,
   onAnyChange: saveAll
 });
+
 
 
 
