@@ -155,11 +155,13 @@ body{
   line-height: 1;
   user-select: none;
   /* --- Band row: remove the thin cell borders (stops text being sliced) --- */
+
+
+}
+/* Band row: remove the thin vertical borders so text isn't sliced */
 .cell.band{
   border-left: none !important;
   border-right: none !important;
-}
-
 }
 
 .rowlabel{
@@ -195,9 +197,6 @@ body{
   border-right: var(--divider) solid var(--dividerColor) !important;
 }
 
-.band-divider{
-  border-right: var(--divider) solid var(--dividerColor);
-}
 
 .clickable{
   cursor: pointer;
@@ -277,6 +276,7 @@ body{
 .cell.band.band-divider{
   border-right: var(--divider) solid var(--dividerColor) !important;
 }
+
 
 
 
