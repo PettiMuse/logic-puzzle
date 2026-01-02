@@ -154,6 +154,12 @@ body{
   font-size: 14px;
   line-height: 1;
   user-select: none;
+  /* --- Band row: remove the thin cell borders (stops text being sliced) --- */
+.cell.band{
+  border-left: none !important;
+  border-right: none !important;
+}
+
 }
 
 .rowlabel{
@@ -184,13 +190,10 @@ body{
   align-items: center;
 }
 
-
-
-/* Remove the thin grey border under the thick divider on band cells */
+/* Put the thick group divider back on the band cells */
 .cell.band.band-divider{
-  border-right: none !important;
+  border-right: var(--divider) solid var(--dividerColor) !important;
 }
-
 
 .band-divider{
   border-right: var(--divider) solid var(--dividerColor);
@@ -274,6 +277,7 @@ body{
 .cell.band.band-divider{
   border-right: var(--divider) solid var(--dividerColor) !important;
 }
+
 
 
 
