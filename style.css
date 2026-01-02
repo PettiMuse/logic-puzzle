@@ -1,7 +1,7 @@
 :root{
   --cell: 44px;
   --divider: 4px;
-  --labelw: 140px;          /* main grid label width (matches JS labelWidth) */
+  --labelw: 140px;          /* MUST match JS labelWidth */
   --border: #b9b9b9;
   --header: #dfe6f3;
   --subheader: #cfd9ee;
@@ -18,7 +18,7 @@ body{
   color: #111;
 }
 
-/* Header */
+/* ================= HEADER ================= */
 .top{
   padding: 14px 14px 8px;
   text-align: center;
@@ -31,8 +31,7 @@ body{
   gap: 10px;
   justify-content: center;
   align-items: center;
-  padding: 10px 0 0;
-  flex-wrap: wrap;
+  padding-top: 10px;
 }
 .controls button{
   padding: 10px 14px;
@@ -42,60 +41,45 @@ body{
   cursor: pointer;
   font-weight: 700;
 }
-.controls button:hover{ filter: brightness(0.97); }
 
 .status{ font-weight: 700; }
-.flash{ animation: flash 0.4s ease; }
-@keyframes flash{
-  from{ transform: scale(1.03); }
-  to{ transform: scale(1); }
-}
 
-/* Page container */
+/* ================= LAYOUT ================= */
 .wrap{
   max-width: 1200px;
   margin: 0 auto;
   padding: 16px;
 }
 
-/* ===== NEW: ONE CONNECTED WORKSHEET LAYOUT ===== */
-
 .sheet{
   display: grid;
-  grid-template-columns: 1fr 420px;  /* left big area + right small area */
+  grid-template-columns: 1fr 420px;
   grid-template-rows: auto auto;
   gap: 18px;
-  align-items: start;
 }
 
+/* worksheet blocks */
 .block{
-  position: relative;
   background: #fff;
   border: 1px solid #999;
   padding: 10px;
+  position: relative;
 }
 
-/* Main grid spans full top row */
 .block.main{
   grid-column: 1 / span 2;
-  padding-bottom: 0;
 }
 
-/* Pastry×Treat sits bottom-left, pulled up to touch */
 .block.pastryTreat{
-  grid-column: 1;
-  grid-row: 2;
   margin-top: -18px;
-  padding-top: 18px;
 }
 
-/* Treat×Flavour sits bottom-right */
-.block.treatFlavour{
-  grid-column: 2;
-  grid-row: 2;
+.block-title{
+  font-weight: 800;
+  margin-bottom: 8px;
 }
 
-/* Side labels (NAME / PASTRY) outside grid, vertical */
+/* side labels */
 .side-label{
   position: absolute;
   left: -42px;
@@ -103,48 +87,23 @@ body{
   transform: translateY(-50%) rotate(-90deg);
   font-weight: 800;
   letter-spacing: 1px;
-  font-size: 14px;
 }
 
-/* Top category titles (FLAVOUR / TREAT / PASTRY) above the main grid */
-.top-labels{
-  display: grid;
-  grid-template-columns: 5fr 5fr 5fr;
-  margin-left: var(--labelw);
-  margin-bottom: 6px;
-  font-weight: 800;
-  font-size: 14px;
-}
-.top-label{ text-align: center; }
-
-.block-title{
-  font-weight: 800;
-  margin-bottom: 8px;
-}
-
-/* Grid wrapper (scroll if needed) */
+/* ================= GRID ================= */
 .logic-grid{
   overflow-x: auto;
-  overflow-y: hidden;
-  padding-bottom: 6px;
 }
 
-/* ===== THE GRID ITSELF ===== */
 .grid{
   display: grid;
-  gap: 0;
   border: 1px solid var(--border);
-  background-color: #fff;
+  background: #fff;
   width: max-content;
+  position: relative;
 }
 
-/* Keep all cells above the divider overlay */
-
-/* Cells */
-
+/* base cell */
 .cell{
- position: relative;
-  z-index: 2;
   width: var(--cell);
   height: var(--cell);
   border: 1px solid var(--border);
@@ -152,48 +111,13 @@ body{
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  line-height: 1;
   user-select: none;
-  /* --- Band row: remove the thin cell borders (stops text being sliced) --- */
-
-
-}
-/* ===== Band row (Flavour / Treat / Pastry) ===== */
-.cell.band{
-  height: 72px !important;
-  padding: 6px 18px;
-  line-height: 1.1;
-
-  /* make the band look like the paper */
-  background: #fff;
-
-  /* IMPORTANT: remove ALL borders so nothing slices the text */
-  border: none !important;
-
-  /* keep it horizontal and move text away from the divider */
-  writing-mode: horizontal-tb !important;
-  transform: none !important;
-  justify-content: flex-start;
-  align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
-/* Put back ONLY the horizontal band lines (top & bottom) */
-.cell.band{
-  box-shadow:
-    inset 0 1px 0 var(--border),     /* top thin line */
-    inset 0 -1px 0 var(--border);    /* bottom thin line */
-}
-
-/* Put back ONLY the thick group divider line (between Flavour|Treat|Pastry) */
-.cell.band.band-divider{
-  box-shadow:
-    inset 0 1px 0 var(--border),
-    inset 0 -1px 0 var(--border),
-    inset calc(-1 * var(--divider)) 0 0 0 var(--dividerColor); /* right thick line */
-}
-
+/* row labels */
 .rowlabel{
-  width: auto;
   min-width: 120px;
   justify-content: flex-start;
   padding-left: 10px;
@@ -201,65 +125,65 @@ body{
   background: var(--header);
 }
 
+/* column header cells */
 .header{
   background: var(--header);
   font-weight: 800;
 }
 
-/* Force the top band row (Flavour / Treat / Pastry) to be taller than normal cells and wide enough */
+/* ================= TOP BAND (Flavour / Treat / Pastry) ================= */
 .cell.band{
-  height: 72px !important;
-  line-height: 1.1;
-  padding: 6px 22px 6px 18px;   /* extra right padding */
-  overflow: visible;
+  height: 72px;
+  padding: 6px 18px;
+  background: #fff;
 
+  /* CRITICAL: no borders = no text slicing */
+  border: none;
+
+  writing-mode: horizontal-tb;
+  transform: none;
+
+  justify-content: flex-start;
+  align-items: center;
+
+  /* draw only top & bottom lines */
+  box-shadow:
+    inset 0 1px 0 var(--border),
+    inset 0 -1px 0 var(--border);
+}
+
+/* thick divider ONLY for group breaks */
+.cell.band.band-divider{
+  box-shadow:
+    inset 0 1px 0 var(--border),
+    inset 0 -1px 0 var(--border),
+    inset calc(-1 * var(--divider)) 0 0 0 var(--dividerColor);
+}
+
+/* ================= VERTICAL COLUMN HEADERS ================= */
+.grid > .cell.header:not(.rowlabel){
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  height: 140px;
+  font-size: 13px;
+  padding: 6px 0;
+  justify-content: flex-end;
+}
+
+/* never rotate band cells */
+.grid > .cell.band{
   writing-mode: horizontal-tb !important;
   transform: none !important;
-
-  justify-content: flex-start;  /* move text away from divider */
-  align-items: center;
 }
 
-/* Put the thick group divider back on the band cells */
-.cell.band.band-divider{
-  border-right: var(--divider) solid var(--dividerColor) !important;
-}
-
-
-.clickable{
-  cursor: pointer;
-  background: #fff;
-}
-.clickable:hover{
-  background: #f0f3ff;
-}
+/* ================= CLICKABLE CELLS ================= */
+.clickable{ cursor: pointer; }
+.clickable:hover{ background: #f0f3ff; }
 
 .x{ color: #d11; font-weight: 900; }
 .check{ color: #0a8f3c; font-weight: 900; }
 
-/* ===== Vertical column headers ===== */
-.grid > .cell.header:not(.rowlabel){
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  height: 140px;           /* taller header row */
-  white-space: nowrap;
-  padding: 6px 0;
-  align-items: flex-end;
-  justify-content: center;
-  font-size: 13px;
-}
-/* Never rotate the top band cells (Flavour / Treat / Pastry) */
-.cell.band{
-  writing-mode: horizontal-tb !important;
-  transform: none !important;
-}
-
-/* ===== MAIN GRID GROUP DIVIDERS (full height) ===== */
-/* Uses label width + 5 cols + 10 cols to draw continuous vertical lines */
-#mainGrid .grid{
-  position: relative;
-}
-
+/* ================= FULL-HEIGHT DIVIDERS ================= */
 #mainGrid .grid::before{
   content: "";
   position: absolute;
@@ -282,37 +206,10 @@ body{
     );
 }
 
-/* Mobile */
+/* ================= MOBILE ================= */
 @media (max-width: 900px){
-  .top h1{ font-size: 34px; }
-
   .sheet{
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
   }
-  .block.main{ grid-column: 1; }
-  .block.treatFlavour{ grid-column: 1; grid-row: 3; }
-
-  .side-label{ left: -34px; }
 }
-
-
-
-/* remove the thin grey border so only the thick divider shows */
-.cell.band.band-divider{
-  border-right: var(--divider) solid var(--dividerColor) !important;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
