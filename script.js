@@ -214,9 +214,8 @@ function copy(from, to) {
 const grids = {};
 
 const mainCols = [...FLAVOURS, ...TREATS, ...PASTRIES];
-const sep1 = FLAVOURS.length - 1;                 // after Spinach
-const sep2 = FLAVOURS.length + TREATS.length - 1; // after Turnover
-
+const sep1 = FLAVOURS.length;                 // before eclair
+const sep2 = FLAVOURS.length + TREATS.length - 1; // before Choux
 grids.main = buildMatrixGrid({
   mountId: "mainGrid",
   rowLabels: NAMES,
@@ -266,6 +265,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
