@@ -182,6 +182,10 @@ body{
 }
 
 
+/* Remove the thin grey border under the thick divider on band cells */
+.cell.band.band-divider{
+  border-right: none !important;
+}
 
 
 .band-divider{
@@ -261,6 +265,7 @@ body{
 .cell.band:not(:last-child){
   border-right: none !important;
 }
+
 
 
 
