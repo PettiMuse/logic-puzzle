@@ -60,13 +60,31 @@ function buildMatrixGrid({
   grid.style.gridTemplateColumns =
     `${labelWidth}px repeat(${colLabels.length}, var(--cell))`;
 
-  // Category band
-  if (bandTitleTop || bandTitleLeft) {
-    grid.appendChild(makeCell(bandTitleLeft, ["cell", "band", "rowlabel"]));
+  // Category band (can be one string or 3 section titles)
+if (bandTitleTop || bandTitleLeft) {
+  grid.appendChild(makeCell(bandTitleLeft, ["cell", "band", "rowlabel"]));
+
+  // If bandTitleTop is an array like ["Flavour","Treat","Pastry"]
+  if (Array.isArray(bandTitleTop)) {
+    const sections = bandTitleTop.length;                 // 3
+    const per = Math.floor(colLabels.length / sections);  // 15/3 = 5
+
+    bandTitleTop.forEach((t, i) => {
+      const band = makeCell(t, ["cell", "band"]);
+      band.style.gridColumn = `span ${per}`;
+      // add divider after Flavour and Treat
+      if (i < sections - 1) band.classList.add("band-divider");
+      grid.appendChild(band);
+    });
+
+  } else {
+    // Single title spanning all columns
     const bandTop = makeCell(bandTitleTop, ["cell", "band"]);
     bandTop.style.gridColumn = `span ${colLabels.length}`;
     grid.appendChild(bandTop);
   }
+}
+
 
   // Column headers
   grid.appendChild(makeCell("", ["cell", "header", "rowlabel"]));
@@ -204,7 +222,7 @@ grids.main = buildMatrixGrid({
   mountId: "mainGrid",
   rowLabels: NAMES,
   colLabels: mainCols,
-  bandTitleTop: "Flavour        Treat        Pastry",
+  bandTitleTop: ["Flavour","Treat","Pastry"],
   addSeparatorsAtColIndex: [sep1, sep2],
   onAnyChange: saveAll
 });
@@ -243,6 +261,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
