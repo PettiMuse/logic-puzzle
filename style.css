@@ -201,6 +201,34 @@ body{
       transparent calc(140px + (10 * var(--cell)) + 4px)
     );
 }
+/* ===== MAIN GRID DIVIDERS: full height overlay ===== */
+#mainGrid .grid{
+  position: relative;
+}
+
+#mainGrid .grid::before{
+  content: "";
+  position: absolute;
+  inset: 0;                 /* top:0 right:0 bottom:0 left:0 */
+  pointer-events: none;
+  z-index: 5;
+
+  /* two vertical lines */
+  background-image:
+    linear-gradient(to right,
+      transparent calc(140px + (5 * var(--cell))),
+      #6d7aa5 calc(140px + (5 * var(--cell))),
+      #6d7aa5 calc(140px + (5 * var(--cell)) + 6px),
+      transparent calc(140px + (5 * var(--cell)) + 6px)
+    ),
+    linear-gradient(to right,
+      transparent calc(140px + (10 * var(--cell))),
+      #6d7aa5 calc(140px + (10 * var(--cell))),
+      #6d7aa5 calc(140px + (10 * var(--cell)) + 6px),
+      transparent calc(140px + (10 * var(--cell)) + 6px)
+    );
+}
+
 
 
 
