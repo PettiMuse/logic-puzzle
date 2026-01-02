@@ -207,6 +207,7 @@ function copy(from, to) {
     for (let c = 0; c < to[r].length; c++)
       to[r][c] = from[r]?.[c] || "";
 }
+const PASTRY_TREAT_ROWS = [...PASTRIES, ...TREATS];
 
 // =====================
 // BUILD GRIDS
@@ -214,8 +215,11 @@ function copy(from, to) {
 const grids = {};
 
 const mainCols = [...FLAVOURS, ...TREATS, ...PASTRIES];
-const sep1 = FLAVOURS.length;                 // before eclair
-const sep2 = FLAVOURS.length + TREATS.length - 1; // before Choux
+
+// PUT THESE TWO LINES HERE:
+const sep1 = FLAVOURS.length - 1;                 // after Spinach
+const sep2 = FLAVOURS.length + TREATS.length - 1; // after Turnover
+
 grids.main = buildMatrixGrid({
   mountId: "mainGrid",
   rowLabels: NAMES,
@@ -225,42 +229,30 @@ grids.main = buildMatrixGrid({
   onAnyChange: saveAll
 });
 
+
+
+// Treat × Pastry grid changed to “all rows down the left”
+const PASTRY_TREAT_ROWS = [...PASTRIES, ...TREATS];
+
 grids.pastryTreat = buildMatrixGrid({
   mountId: "pastryTreatGrid",
-
-  // EVERYTHING down the left
   rowLabels: PASTRY_TREAT_ROWS,
-
-  // single empty column just for ticking
-  colLabels: [""],
-
-  bandTitleLeft: "Pastry / Treat",
-  bandTitleTop: "",          // ❌ nothing across the top
+  colLabels: [""],              // one skinny column of clickable cells
+  bandTitleLeft: "",            // optional: leave blank
+  bandTitleTop: "",             // nothing across the top
   labelWidth: 140,
-
+  exclusive: false,             // IMPORTANT: allow multiple ticks
   onAnyChange: saveAll
 });
 
-
-// Restore saved state
-loadAll();
-
-// Clear button
-if (clearBtn) {
-  clearBtn.addEventListener("click", () => {
-    if (!confirm("Clear the entire puzzle?")) return;
-    grids.main.clear();
-    grids.pastryTreat.clear();
-    grids.treatFlavour.clear();
-    localStorage.removeItem(STORAGE_KEY);
-    flashSaved("Cleared");
-  });
-}
-
-
-
-
-
-
-
+// Treat × Flavour grid (you need this back)
+grids.treatFlavour = buildMatrixGrid({
+  mountId: "treatFlavourGrid",
+  rowLabels: TREATS,
+  colLabels: FLAVOURS,
+  bandTitleLeft: "Treat",
+  bandTitleTop: "Flavour",
+  labelWidth: 120,
+  onAnyChange: saveAll
+});
 
