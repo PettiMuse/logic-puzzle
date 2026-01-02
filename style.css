@@ -179,28 +179,6 @@ body{
   background-size: 100% 100%;
 }
 
-/* Draw two continuous vertical divider lines:
-   - after 5 flavour columns
-   - after 10 columns total (5 flavour + 5 treat)
-   Note: labelWidth is 140px in your JS main grid.
-*/
-#mainGrid .grid{
-  background-image:
-    linear-gradient(to right,
-      transparent 0,
-      transparent calc(140px + (5 * var(--cell))),
-      #6d7aa5 calc(140px + (5 * var(--cell))),
-      #6d7aa5 calc(140px + (5 * var(--cell)) + 4px),
-      transparent calc(140px + (5 * var(--cell)) + 4px)
-    ),
-    linear-gradient(to right,
-      transparent 0,
-      transparent calc(140px + (10 * var(--cell))),
-      #6d7aa5 calc(140px + (10 * var(--cell))),
-      #6d7aa5 calc(140px + (10 * var(--cell)) + 4px),
-      transparent calc(140px + (10 * var(--cell)) + 4px)
-    );
-}
 /* ===== MAIN GRID DIVIDERS: full height overlay ===== */
 #mainGrid .grid{
   position: relative;
@@ -214,6 +192,7 @@ body{
   z-index: 5;
 
   /* two vertical lines */
+  background-repeat: no-repeat;
   background-image:
     linear-gradient(to right,
       transparent calc(140px + (5 * var(--cell))),
@@ -228,6 +207,7 @@ body{
       transparent calc(140px + (10 * var(--cell)) + 4px)
     );
 }
+
 
 
 
