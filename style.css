@@ -138,8 +138,13 @@ body{
   width: max-content;
 }
 
+/* Keep all cells above the divider overlay */
+
 /* Cells */
+
 .cell{
+ position: relative;
+  z-index: 2;
   width: var(--cell);
   height: var(--cell);
   border: 1px solid var(--border);
@@ -219,7 +224,7 @@ body{
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 10;
+  z-index: 1;
   background-repeat: no-repeat;
   background-image:
     linear-gradient(to right,
@@ -253,6 +258,7 @@ body{
 .cell.band:not(:last-child){
   border-right: none !important;
 }
+
 
 
 
