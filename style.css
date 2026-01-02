@@ -176,6 +176,18 @@ body{
   justify-content: center;
   white-space: nowrap;
 }
+/* ===== TOP GROUP BAND CELLS (Flavour / Treat / Pastry) ===== */
+.band{
+  height: 60px;              /* THIS is what you want bigger */
+  font-size: 16px;
+  font-weight: 800;
+
+  display: flex;
+  align-items: center;       /* vertical centering */
+  justify-content: center;   /* horizontal centering */
+
+  white-space: nowrap;       /* prevent word wrapping */
+}
 
 
 
@@ -247,6 +259,7 @@ body{
 
   .side-label{ left: -34px; }
 }
+
 
 
 
