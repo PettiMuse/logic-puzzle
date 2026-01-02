@@ -174,12 +174,16 @@ body{
 .cell.band{
   height: 72px !important;
   line-height: 1.1;
+  padding: 6px 22px 6px 18px;   /* extra right padding */
+  overflow: visible;
 
-  /* more breathing room so the divider never touches letters */
-  padding: 6px 18px;
+  writing-mode: horizontal-tb !important;
+  transform: none !important;
 
-  overflow: visible;   /* don’t clip the word */
+  justify-content: flex-start;  /* move text away from divider */
+  align-items: center;
 }
+
 
 
 /* Remove the thin grey border under the thick divider on band cells */
@@ -270,6 +274,7 @@ body{
 .cell.band.band-divider{
   border-right: var(--divider) solid var(--dividerColor) !important;
 }
+
 
 
 
