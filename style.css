@@ -170,9 +170,32 @@ body{
 }
 
 /* Separator ONLY in the MAIN grid, as a vertical line between groups */
-#mainGrid .cell.separator{
-  border-right: 4px solid #6d7aa5 !important;
   box-shadow: none !important;
+}
+
+/* Continuous group dividers for the MAIN grid */
+#mainGrid .grid{
+  position: relative;
+
+  /* two vertical lines:
+     after Flavour group (5 cols) and after Treat group (5 cols more)
+     1 label column = 140px (matches your JS labelWidth)
+     each data column = var(--cell)
+  */
+  background-image:
+    linear-gradient(to right,
+      transparent calc(140px + (5 * var(--cell))),
+      #6d7aa5 calc(140px + (5 * var(--cell))),
+      #6d7aa5 calc(140px + (5 * var(--cell)) + 4px),
+      transparent calc(140px + (5 * var(--cell)) + 4px)
+    ),
+    linear-gradient(to right,
+      transparent calc(140px + (10 * var(--cell))),
+      #6d7aa5 calc(140px + (10 * var(--cell))),
+      #6d7aa5 calc(140px + (10 * var(--cell)) + 4px),
+      transparent calc(140px + (10 * var(--cell)) + 4px)
+    );
+  background-repeat: no-repeat;
 }
 
 
