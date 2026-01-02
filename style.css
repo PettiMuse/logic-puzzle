@@ -202,6 +202,11 @@ body{
   justify-content: center;
   font-size: 13px;
 }
+/* Never rotate the top band cells (Flavour / Treat / Pastry) */
+.cell.band{
+  writing-mode: horizontal-tb !important;
+  transform: none !important;
+}
 
 /* ===== MAIN GRID GROUP DIVIDERS (full height) ===== */
 /* Uses label width + 5 cols + 10 cols to draw continuous vertical lines */
@@ -244,6 +249,7 @@ body{
 
   .side-label{ left: -34px; }
 }
+
 
 
 
