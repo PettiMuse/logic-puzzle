@@ -281,6 +281,10 @@ body{
 .block.pastryTreat .block-title{
   display: none !important;
 }
+/* Move the Pastry×Treat grid so it starts under the Treat section (after 5 flavour cols) */
+.under-treat{
+  margin-left: calc(var(--labelw) + (5 * var(--cell)));
+}
 
 /* Mobile */
 @media (max-width: 900px){
@@ -341,6 +345,7 @@ body{
   align-items: center !important;
   justify-content: center !important;
 }
+
 
 
 
