@@ -271,28 +271,14 @@ grids.main = buildMatrixGrid({
 // Pastry × Treat  (rows: pastries, columns: treats)
 grids.pastryTreat = buildMatrixGrid({
   mountId: "pastryTreatGrid",
-
-  // Rows down the left
-  rowLabels: PASTRIES,          // Choux..Shortcrust
-
-  // Columns across the top (this is what makes it extend to Turnover)
-  colLabels: TREATS,            // Eclair..Turnover
-
-  // No “Treat × Pastry” title row inside the grid
-  bandTitleLeft: "",
-  bandTitleTop: "",
-
-  labelWidth: 140,
-
-  // This grid should behave like a normal logic grid: one ✓ per row/col
+  rowLabels: PASTRIES,   // Choux..Shortcrust DOWN the left
+  colLabels: TREATS,     // Eclair..Turnover ACROSS the top
+  bandTitleLeft: "Pastry",
+  bandTitleTop: "Treat",
+  labelWidth: 120,
   exclusive: true,
-
-  // Keep column headers so you see Eclair..Turnover at the top
-  showColHeaders: true,
-
   onAnyChange: saveAll
 });
-
 
 // Treat × Flavour (rows: treats, columns: flavours)
 grids.treatFlavour = buildMatrixGrid({
@@ -334,8 +320,6 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
-
-
 
 
 
