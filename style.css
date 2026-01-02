@@ -190,8 +190,8 @@ body{
       transparent 0,
       transparent calc(140px + (5 * var(--cell))),
       #6d7aa5 calc(140px + (5 * var(--cell))),
-      #6d7aa5 calc(140px + (5 * var(--cell)) + 6px),
-      transparent calc(140px + (5 * var(--cell)) + 6px)
+      #6d7aa5 calc(140px + (5 * var(--cell)) + 4px),
+      transparent calc(140px + (5 * var(--cell)) + 4px)
     ),
     linear-gradient(to right,
       transparent 0,
@@ -228,6 +228,7 @@ body{
       transparent calc(140px + (10 * var(--cell)) + 6px)
     );
 }
+
 
 
 
