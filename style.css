@@ -169,13 +169,15 @@ body{
   background: var(--subheader);
   font-weight: 800;
 
-  /* NEW */
-  height: 56px;          /* increase band row height */
-  font-size: 16px;       /* slightly larger text */
+  height: 56px !important;
+  font-size: 16px;
   display: flex;
-  align-items: center;   /* vertical centering */
+  align-items: center;
   justify-content: center;
+  white-space: nowrap;
 }
+
+
 
 .band-divider{
   border-right: var(--divider) solid var(--dividerColor);
@@ -245,5 +247,6 @@ body{
 
   .side-label{ left: -34px; }
 }
+
 
 
