@@ -138,10 +138,17 @@ body{
 .x{ color: #d11; font-weight: 900; }
 .check{ color: #0a8f3c; font-weight: 900; }
 
-/* thicker divider between categories */
+/* Default separator (normal cells) */
 .separator{
-  border-right: 4px solid #6d7aa5 !important;
+  border-right: 4px solid #6d7aa5;
 }
+
+/* Vertical header separators need bottom border instead */
+.grid > .cell.header.separator{
+  border-right: none !important;
+  border-bottom: 4px solid #6d7aa5 !important;
+}
+
 
 /* Mobile: stack the two small grids */
 @media (max-width: 900px){
@@ -172,4 +179,5 @@ body{
   justify-content: center;
   font-size: 13px;
 }
+
 
