@@ -170,12 +170,15 @@ body{
   font-weight: 800;
 }
 
-/* Force the top band row (Flavour / Treat / Pastry) to be taller than normal cells */
+/* Force the top band row (Flavour / Treat / Pastry) to be taller than normal cells and wide enough */
 .cell.band{
-  height: 72px !important;   /* increase until the words fit */
+  height: 72px !important;
   line-height: 1.1;
-  padding: 6px 8px;
-  overflow: hidden;          /* stops text spilling outside */
+
+  /* more breathing room so the divider never touches letters */
+  padding: 6px 18px;
+
+  overflow: visible;   /* don’t clip the word */
 }
 
 
@@ -258,6 +261,7 @@ body{
 .cell.band:not(:last-child){
   border-right: none !important;
 }
+
 
 
 
