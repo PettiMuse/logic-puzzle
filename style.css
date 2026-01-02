@@ -168,35 +168,38 @@ body{
   justify-content: center;
   font-size: 13px;
 }
+/* =========================
+   MAIN GRID GROUP DIVIDERS
+   ========================= */
 
-/* Separator ONLY in the MAIN grid, as a vertical line between groups */
-  box-shadow: none !important;
+/* Make sure main grid background is clean */
+#mainGrid .grid{
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
-/* Continuous group dividers for the MAIN grid */
+/* Draw two continuous vertical divider lines:
+   - after 5 flavour columns
+   - after 10 columns total (5 flavour + 5 treat)
+   Note: labelWidth is 140px in your JS main grid.
+*/
 #mainGrid .grid{
-  position: relative;
-
-  /* two vertical lines:
-     after Flavour group (5 cols) and after Treat group (5 cols more)
-     1 label column = 140px (matches your JS labelWidth)
-     each data column = var(--cell)
-  */
   background-image:
     linear-gradient(to right,
+      transparent 0,
       transparent calc(140px + (5 * var(--cell))),
       #6d7aa5 calc(140px + (5 * var(--cell))),
       #6d7aa5 calc(140px + (5 * var(--cell)) + 4px),
       transparent calc(140px + (5 * var(--cell)) + 4px)
     ),
     linear-gradient(to right,
+      transparent 0,
       transparent calc(140px + (10 * var(--cell))),
       #6d7aa5 calc(140px + (10 * var(--cell))),
       #6d7aa5 calc(140px + (10 * var(--cell)) + 4px),
       transparent calc(140px + (10 * var(--cell)) + 4px)
     );
-  background-repeat: no-repeat;
 }
-
 
 
