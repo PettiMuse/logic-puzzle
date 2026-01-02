@@ -207,7 +207,6 @@ function copy(from, to) {
     for (let c = 0; c < to[r].length; c++)
       to[r][c] = from[r]?.[c] || "";
 }
-const PASTRY_TREAT_ROWS = [...PASTRIES, ...TREATS];
 
 // =====================
 // BUILD GRIDS
@@ -255,4 +254,5 @@ grids.treatFlavour = buildMatrixGrid({
   labelWidth: 120,
   onAnyChange: saveAll
 });
+
 
