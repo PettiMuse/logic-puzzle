@@ -1,4 +1,5 @@
 :root{
+  --bandHeight: 72px;   /* must match .cell.band height */
   --cell: 44px;
   --divider: 4px;
   --labelw: 140px;          /* MUST match JS labelWidth */
@@ -213,3 +214,4 @@ body{
     grid-template-rows: auto auto auto;
   }
 }
+
