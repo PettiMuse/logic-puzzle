@@ -1,5 +1,6 @@
 :root{
   --cell: 44px;
+  --divider: 4px;
   --border: #b9b9b9;
   --header: #dfe6f3;
   --subheader: #cfd9ee;
@@ -207,6 +208,7 @@ body{
       transparent calc(140px + (10 * var(--cell)) + 4px)
     );
 }
+
 
 
 
