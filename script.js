@@ -271,10 +271,7 @@ const PASTRY_TREAT_ROWS = [...PASTRIES, ...TREATS];
 grids.pastryTreat = buildMatrixGrid({
   mountId: "pastryTreatGrid",
   rowLabels: PASTRY_TREAT_ROWS,
-
-  // 5 columns wide to match Apple..Spinach
   colLabels: Array(FLAVOURS.length).fill(""),
-
   bandTitleLeft: "",
   bandTitleTop: "",
   labelWidth: 140,
@@ -282,6 +279,7 @@ grids.pastryTreat = buildMatrixGrid({
   showColHeaders: false,
   onAnyChange: saveAll
 });
+
 
 // Treat × Flavour grid (you need this back)
 grids.treatFlavour = buildMatrixGrid({
@@ -309,6 +307,8 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
+
 
 
 
