@@ -242,20 +242,16 @@ grids.pastryTreat = buildMatrixGrid({
   mountId: "pastryTreatGrid",
   rowLabels: PASTRY_TREAT_ROWS,
 
-  // ✅ 5 columns wide (Apple..Spinach width)
+  // 5 columns wide to match Apple..Spinach
   colLabels: Array(FLAVOURS.length).fill(""),
 
   bandTitleLeft: "",
   bandTitleTop: "",
   labelWidth: 140,
-
   exclusive: false,
-  showColHeaders: false,   // ✅ removes the blank header row
-
+  showColHeaders: false,
   onAnyChange: saveAll
 });
-
-
 
 // Treat × Flavour grid (you need this back)
 grids.treatFlavour = buildMatrixGrid({
@@ -267,6 +263,7 @@ grids.treatFlavour = buildMatrixGrid({
   labelWidth: 120,
   onAnyChange: saveAll
 });
+
 
 
 
