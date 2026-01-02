@@ -165,29 +165,14 @@ body{
   font-weight: 800;
 }
 
-.band{
-  background: var(--subheader);
-  font-weight: 800;
-
-  height: 56px !important;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
+/* Force the top band row (Flavour / Treat / Pastry) to be taller than normal cells */
+.cell.band{
+  height: 72px !important;   /* increase until the words fit */
+  line-height: 1.1;
+  padding: 6px 8px;
+  overflow: hidden;          /* stops text spilling outside */
 }
-/* ===== TOP GROUP BAND CELLS (Flavour / Treat / Pastry) ===== */
-.band{
-  height: 60px;              /* THIS is what you want bigger */
-  font-size: 16px;
-  font-weight: 800;
 
-  display: flex;
-  align-items: center;       /* vertical centering */
-  justify-content: center;   /* horizontal centering */
-
-  white-space: nowrap;       /* prevent word wrapping */
-}
 
 
 
@@ -259,6 +244,7 @@ body{
 
   .side-label{ left: -34px; }
 }
+
 
 
 
