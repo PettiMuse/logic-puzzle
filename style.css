@@ -156,12 +156,14 @@ body{
   user-select: none;
   /* --- Band row: remove the thin cell borders (stops text being sliced) --- */
 .cell.band{
-  border: none;
-  box-shadow:
-    inset 0 1px 0 var(--border),
-    inset 0 -1px 0 var(--border);
+  border-left: none !important;
+  border-right: none !important;
+ 
+  /* Band row must sit above grid borders & overlays */
+.grid > .cell.band{
+  z-index: 5;
+  background: #fff;
 }
-
 
 }
 
@@ -289,7 +291,6 @@ body{
 .cell.band.band-divider{
   border-right: var(--divider) solid var(--dividerColor) !important;
 }
-
 
 
 
