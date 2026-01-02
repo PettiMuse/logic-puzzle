@@ -249,6 +249,11 @@ body{
 
   .side-label{ left: -34px; }
 }
+/* Remove internal band cell dividers, keep outer edges */
+.cell.band:not(:last-child){
+  border-right: none !important;
+}
+
 
 
 
