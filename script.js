@@ -86,13 +86,16 @@ if (bandTitleTop || bandTitleLeft) {
 }
 
 
-  // Column headers
+  // Column headers (skip if explicitly disabled)
+if (colLabels.length && colLabels[0] !== "__NO_HEADERS__") {
   grid.appendChild(makeCell("", ["cell", "header", "rowlabel"]));
   colLabels.forEach((label, c) => {
     const h = makeCell(label, ["cell", "header"]);
     if (addSeparatorsAtColIndex.includes(c)) h.classList.add("separator");
     grid.appendChild(h);
   });
+}
+
 
   // Rows
   rowLabels.forEach((rowLabel, r) => {
@@ -235,14 +238,20 @@ const PASTRY_TREAT_ROWS = [...PASTRIES, ...TREATS];
 
 grids.pastryTreat = buildMatrixGrid({
   mountId: "pastryTreatGrid",
+
+  // ALL rows down the left
   rowLabels: PASTRY_TREAT_ROWS,
-  colLabels: [""],              // one skinny column of clickable cells
-  bandTitleLeft: "",            // optional: leave blank
-  bandTitleTop: "",             // nothing across the top
+
+  // magic flag → NO header row at all
+  colLabels: ["__NO_HEADERS__"],
+
+  bandTitleLeft: "",
+  bandTitleTop: "",
   labelWidth: 140,
-  exclusive: false,             // IMPORTANT: allow multiple ticks
+  exclusive: false,
   onAnyChange: saveAll
 });
+
 
 // Treat × Flavour grid (you need this back)
 grids.treatFlavour = buildMatrixGrid({
@@ -254,5 +263,6 @@ grids.treatFlavour = buildMatrixGrid({
   labelWidth: 120,
   onAnyChange: saveAll
 });
+
 
 
