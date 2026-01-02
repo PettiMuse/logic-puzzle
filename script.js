@@ -45,6 +45,7 @@ function buildMatrixGrid({
   bandTitleTop = "",
   labelWidth = 140,
   exclusive = true,
+   showColHeaders = true,    
   addSeparatorsAtColIndex = [],
   onAnyChange = () => {}
 }) {
@@ -263,6 +264,7 @@ grids.treatFlavour = buildMatrixGrid({
   labelWidth: 120,
   onAnyChange: saveAll
 });
+
 
 
 
