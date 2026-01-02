@@ -154,13 +154,7 @@ body{
   font-size: 14px;
   line-height: 1;
   user-select: none;
-  /* --- Band row: remove the thin cell borders (stops text being sliced) --- */
-.cell.band{
-  border-left: none !important;
-  border-right: none !important;
-}
-
-}
+ }
 
 .rowlabel{
   width: auto;
@@ -232,7 +226,10 @@ body{
 #mainGrid .grid{
   position: relative;
 }
-
+top: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
 /* ================= FULL-HEIGHT DIVIDERS (START BELOW BAND ONLY) ================= */
 #mainGrid .grid::before{
   content: "";
@@ -240,10 +237,8 @@ body{
   left: 0;
   right: 0;
 
-  /* start BELOW the band row */
-  top: calc(var(--bandHeight) + 1px);
+ top: 0;
   bottom: 0;
-
   pointer-events: none;
   z-index: 1;
   background-repeat: no-repeat;
@@ -284,6 +279,7 @@ body{
 .cell.band.band-divider{
   border-right: var(--divider) solid var(--dividerColor) !important;
 }
+
 
 
 
