@@ -191,6 +191,8 @@ body{
     inset 0 -1px 0 var(--border),
     inset calc(-1 * var(--divider)) 0 0 0 var(--dividerColor); /* right thick line */
 }
+border-right: none !important;
+}
 
 .rowlabel{
   width: auto;
