@@ -318,6 +318,15 @@ body{
       transparent calc(var(--labelw) + (10 * var(--cell)) + var(--divider))
     );
 }
+/* Keep pastry headers normal (not vertical) in the small Treat×Pastry grid */
+#pastryTreatGrid .grid > .cell.header:not(.rowlabel){
+  writing-mode: horizontal-tb !important;
+  transform: none !important;
+  height: var(--cell) !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
 
 
 
