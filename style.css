@@ -158,10 +158,40 @@ body{
 
 
 }
-/* Band row: remove the thin vertical borders so text isn't sliced */
+/* ===== Band row (Flavour / Treat / Pastry) ===== */
 .cell.band{
-  border-left: none !important;
-  border-right: none !important;
+  height: 72px !important;
+  padding: 6px 18px;
+  line-height: 1.1;
+
+  /* make the band look like the paper */
+  background: #fff;
+
+  /* IMPORTANT: remove ALL borders so nothing slices the text */
+  border: none !important;
+
+  /* keep it horizontal and move text away from the divider */
+  writing-mode: horizontal-tb !important;
+  transform: none !important;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* Put back ONLY the horizontal band lines (top & bottom) */
+.cell.band{
+  box-shadow:
+    inset 0 1px 0 var(--border),     /* top thin line */
+    inset 0 -1px 0 var(--border);    /* bottom thin line */
+}
+
+/* Put back ONLY the thick group divider line (between Flavour|Treat|Pastry) */
+.cell.band.band-divider{
+  box-shadow:
+    inset 0 1px 0 var(--border),
+    inset 0 -1px 0 var(--border),
+    inset calc(-1 * var(--divider)) 0 0 0 var(--dividerColor); /* right thick line */
+}
+border-right: none !important;
 }
 
 .rowlabel{
@@ -268,14 +298,13 @@ body{
   .side-label{ left: -34px; }
 }
 
-.band-divider{
-  border-right: var(--divider) solid var(--dividerColor);
-}
+
 
 /* remove the thin grey border so only the thick divider shows */
 .cell.band.band-divider{
   border-right: var(--divider) solid var(--dividerColor) !important;
 }
+
 
 
 
