@@ -169,6 +169,9 @@ body{
   background: var(--subheader);
   font-weight: 800;
 }
+.band-divider{
+  border-right: var(--divider) solid var(--dividerColor);
+}
 
 .clickable{
   cursor: pointer;
@@ -234,3 +237,4 @@ body{
 
   .side-label{ left: -34px; }
 }
+
