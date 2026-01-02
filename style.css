@@ -233,10 +233,17 @@ body{
   position: relative;
 }
 
+/* ================= FULL-HEIGHT DIVIDERS (START BELOW BAND ONLY) ================= */
 #mainGrid .grid::before{
   content: "";
   position: absolute;
-  inset: 0;
+  left: 0;
+  right: 0;
+
+  /* start BELOW the band row */
+  top: calc(var(--bandHeight) + 1px);
+  bottom: 0;
+
   pointer-events: none;
   z-index: 1;
   background-repeat: no-repeat;
@@ -277,6 +284,7 @@ body{
 .cell.band.band-divider{
   border-right: var(--divider) solid var(--dividerColor) !important;
 }
+
 
 
 
