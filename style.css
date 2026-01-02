@@ -177,6 +177,10 @@ body{
   background: var(--header);
   font-weight: 800;
 }
+/* ---- Treat × Pastry: remove the empty header row gap ---- */
+#pastryTreatGrid .cell.header{
+  display: none !important;
+}
 
 /* Force the top band row (Flavour / Treat / Pastry) to be taller than normal cells and wide enough */
 .cell.band{
@@ -333,6 +337,7 @@ body{
   align-items: center !important;
   justify-content: center !important;
 }
+
 
 
 
