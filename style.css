@@ -208,6 +208,102 @@ body{
       transparent calc(140px + (10 * var(--cell)) + 4px)
     );
 }
+/* ===== NEW: ONE CONNECTED WORKSHEET LAYOUT ===== */
+
+.sheet{
+  display: grid;
+  grid-template-columns: 1fr 420px;  /* left big area + right small area */
+  grid-template-rows: auto auto;
+  gap: 18px;
+  align-items: start;
+}
+
+/* Main grid spans full top row */
+.block.main{
+  grid-column: 1 / span 2;
+}
+
+/* Pastry×Treat sits bottom-left */
+.block.pastryTreat{
+  grid-column: 1;
+  grid-row: 2;
+}
+
+/* Treat×Flavour sits bottom-right */
+.block.treatFlavour{
+  grid-column: 2;
+  grid-row: 2;
+}
+
+/* Make blocks look like the newspaper sections (not separate rounded cards) */
+.block{
+  position: relative;
+  background: #fff;
+  border: 1px solid #999;
+  padding: 10px;
+}
+
+/* Remove your old “panel” card styling effect if you want it closer to newspaper */
+.panel{ display:none; } /* (optional) if your old panels still exist somewhere */
+
+/* Side labels (NAME / PASTRY) outside grid, vertical */
+.side-label{
+  position: absolute;
+  left: -42px;               /* pushes outside the box */
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  font-weight: 800;
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+
+/* Top category titles (FLAVOUR / TREAT / PASTRY) above the main grid */
+.top-labels{
+  display: grid;
+  grid-template-columns: 5fr 5fr 5fr;   /* 5 columns each group */
+  margin-left: 140px;                  /* match your main grid labelWidth */
+  margin-bottom: 6px;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.top-label{
+  text-align: center;
+}
+
+/* Titles for the smaller blocks */
+.block-title{
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+/* Make the main grid and pastryTreat look “joined” */
+.block.main{
+  padding-bottom: 0;       /* so it can visually connect */
+}
+.block.pastryTreat{
+  margin-top: -18px;       /* pulls it upward to touch the main grid */
+  padding-top: 18px;
+}
+
+/* Keep your grid scroll behaviour */
+.logic-grid{
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 6px;
+}
+
+/* Mobile: stack like the paper */
+@media (max-width: 900px){
+  .sheet{
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+  .block.main{ grid-column: 1; }
+  .block.treatFlavour{ grid-column: 1; grid-row: 3; }
+  .side-label{ left: -34px; }
+}
+
 
 
 
