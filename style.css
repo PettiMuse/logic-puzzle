@@ -261,11 +261,15 @@ body{
 
   .side-label{ left: -34px; }
 }
-/* Remove internal band cell dividers, keep outer edges */
-.cell.band:not(:last-child){
-  border-right: none !important;
+
+.band-divider{
+  border-right: var(--divider) solid var(--dividerColor);
 }
 
+/* remove the thin grey border so only the thick divider shows */
+.cell.band.band-divider{
+  border-right: var(--divider) solid var(--dividerColor) !important;
+}
 
 
 
