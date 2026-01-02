@@ -45,13 +45,28 @@ function buildMatrixGrid({
   bandTitleTop = "",
   labelWidth = 140,
   exclusive = true,
-   showColHeaders = true,    
+  exclusiveGroups = null,   // ✅ NEW
+  showColHeaders = true,
   addSeparatorsAtColIndex = [],
   onAnyChange = () => {}
 }) {
+
   const state = Array.from({ length: rowLabels.length }, () =>
     Array.from({ length: colLabels.length }, () => "")
   );
+// --- NEW: optional section ranges for "exclusive" logic (inclusive indexes) ---
+function getGroupRange(colIndex) {
+  // If no section ranges provided, treat whole grid as one group
+  if (!Array.isArray(exclusiveGroups) || exclusiveGroups.length === 0) {
+    return { start: 0, end: colLabels.length - 1 };
+  }
+  // Find the group this column belongs to
+  for (const g of exclusiveGroups) {
+    if (colIndex >= g.start && colIndex <= g.end) return g;
+  }
+  // Fallback
+  return { start: 0, end: colLabels.length - 1 };
+}
 
   const mount = document.getElementById(mountId);
   mount.innerHTML = "";
@@ -114,26 +129,32 @@ if (showColHeaders) {
         const current = state[r][c];
         const next = nextState(current);
 
-        if (exclusive && next === "check") {
-          // Clear other checks in row/col
-          for (let cc = 0; cc < colLabels.length; cc++)
-            if (state[r][cc] === "check") state[r][cc] = "";
+       if (exclusive && next === "check") {
+  const { start, end } = getGroupRange(c);
 
-          for (let rr = 0; rr < rowLabels.length; rr++)
-            if (state[rr][c] === "check") state[rr][c] = "";
+  // Clear other checks ONLY inside this group (row + column)
+  for (let cc = start; cc <= end; cc++) {
+    if (state[r][cc] === "check") state[r][cc] = "";
+  }
+  for (let rr = 0; rr < rowLabels.length; rr++) {
+    if (state[rr][c] === "check") state[rr][c] = "";
+  }
 
-          // Set this check
-          state[r][c] = "check";
+  // Set this check
+  state[r][c] = "check";
 
-          // X out rest
-          for (let cc = 0; cc < colLabels.length; cc++)
-            if (cc !== c) state[r][cc] = "x";
+  // X out rest of the row ONLY inside this group
+  for (let cc = start; cc <= end; cc++) {
+    if (cc !== c) state[r][cc] = "x";
+  }
 
-          for (let rr = 0; rr < rowLabels.length; rr++)
-            if (rr !== r) state[rr][c] = "x";
-        } else {
-          state[r][c] = next;
-        }
+  // X out the same column for other rows (same column is already in this group)
+  for (let rr = 0; rr < rowLabels.length; rr++) {
+    if (rr !== r) state[rr][c] = "x";
+  }
+} else {
+  state[r][c] = next;
+}
 
         render();
         onAnyChange();
@@ -220,6 +241,13 @@ const grids = {};
 
 const mainCols = [...FLAVOURS, ...TREATS, ...PASTRIES];
 
+// ---- CATEGORY GROUPS FOR MAIN GRID (THIS GOES HERE) ----
+const groupsMain = [
+  { start: 0, end: FLAVOURS.length - 1 },                               // Flavour: Apple → Spinach
+  { start: FLAVOURS.length, end: FLAVOURS.length + TREATS.length - 1 }, // Treat: Eclair → Turnover
+  { start: FLAVOURS.length + TREATS.length, end: mainCols.length - 1 }  // Pastry: Choux → Shortcrust
+];
+
 // PUT THESE TWO LINES HERE:
 const sep1 = FLAVOURS.length - 1;                 // after Spinach
 const sep2 = FLAVOURS.length + TREATS.length - 1; // after Turnover
@@ -230,6 +258,7 @@ grids.main = buildMatrixGrid({
   colLabels: mainCols,
   bandTitleTop: ["Flavour","Treat","Pastry"],
   addSeparatorsAtColIndex: [sep1, sep2],
+  exclusiveGroups: groupsMain,
   onAnyChange: saveAll
 });
 
@@ -263,6 +292,7 @@ grids.treatFlavour = buildMatrixGrid({
   labelWidth: 120,
   onAnyChange: saveAll
 });
+
 
 
 
