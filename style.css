@@ -1,10 +1,12 @@
 :root{
   --cell: 44px;
   --divider: 4px;
+  --labelw: 140px;          /* main grid label width (matches JS labelWidth) */
   --border: #b9b9b9;
   --header: #dfe6f3;
   --subheader: #cfd9ee;
   --bg: #f6f7fb;
+  --dividerColor: #6d7aa5;
 }
 
 *{ box-sizing: border-box; }
@@ -49,54 +51,94 @@ body{
   to{ transform: scale(1); }
 }
 
-/* Layout */
+/* Page container */
 .wrap{
   max-width: 1200px;
   margin: 0 auto;
   padding: 16px;
 }
 
-.panel{
-  background: white;
-  border: 1px solid #c7cde0;
-  border-radius: 14px;
-  padding: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-}
+/* ===== NEW: ONE CONNECTED WORKSHEET LAYOUT ===== */
 
-.panel-title{
-  font-weight: 800;
-  margin: 0 0 10px;
-}
-
-.bottom-row{
-  margin-top: 16px;
+.sheet{
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  grid-template-columns: 1fr 420px;  /* left big area + right small area */
+  grid-template-rows: auto auto;
+  gap: 18px;
+  align-items: start;
 }
 
-.panel.small .panel-title{
+.block{
+  position: relative;
+  background: #fff;
+  border: 1px solid #999;
+  padding: 10px;
+}
+
+/* Main grid spans full top row */
+.block.main{
+  grid-column: 1 / span 2;
+  padding-bottom: 0;
+}
+
+/* Pastry×Treat sits bottom-left, pulled up to touch */
+.block.pastryTreat{
+  grid-column: 1;
+  grid-row: 2;
+  margin-top: -18px;
+  padding-top: 18px;
+}
+
+/* Treat×Flavour sits bottom-right */
+.block.treatFlavour{
+  grid-column: 2;
+  grid-row: 2;
+}
+
+/* Side labels (NAME / PASTRY) outside grid, vertical */
+.side-label{
+  position: absolute;
+  left: -42px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  font-weight: 800;
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+
+/* Top category titles (FLAVOUR / TREAT / PASTRY) above the main grid */
+.top-labels{
+  display: grid;
+  grid-template-columns: 5fr 5fr 5fr;
+  margin-left: var(--labelw);
+  margin-bottom: 6px;
+  font-weight: 800;
+  font-size: 14px;
+}
+.top-label{ text-align: center; }
+
+.block-title{
+  font-weight: 800;
   margin-bottom: 8px;
 }
 
-/* ✅ GRID VISIBILITY + SCROLL */
+/* Grid wrapper (scroll if needed) */
 .logic-grid{
-  overflow-x: auto;      /* lets wide grids scroll on phones */
+  overflow-x: auto;
   overflow-y: hidden;
   padding-bottom: 6px;
 }
 
-/* ✅ THE ACTUAL GRID */
+/* ===== THE GRID ITSELF ===== */
 .grid{
-  display: grid;         /* IMPORTANT */
+  display: grid;
   gap: 0;
   border: 1px solid var(--border);
-   background-color: white;
-  width: max-content;    /* grid can be wider than card */
+  background-color: #fff;
+  width: max-content;
 }
 
-/* ✅ CELLS */
+/* Cells */
 .cell{
   width: var(--cell);
   height: var(--cell);
@@ -139,48 +181,20 @@ body{
 .x{ color: #d11; font-weight: 900; }
 .check{ color: #0a8f3c; font-weight: 900; }
 
-
-/* Mobile: stack the two small grids */
-@media (max-width: 900px){
-  .bottom-row{ grid-template-columns: 1fr; }
-  .top h1{ font-size: 34px; }
-}
-/* Make top column headers vertical so they don't overlap */
-.grid .cell.header:not(.rowlabel){
-  height: 130px;              /* taller header row */
-  align-items: flex-end;      /* text sits near the bottom */
-  justify-content: center;
-  padding: 6px 0;
-  font-size: 13px;
-
-  writing-mode: vertical-rl;  /* vertical text */
-  transform: rotate(180deg);  /* makes it read top-to-bottom */
-  white-space: nowrap;
-}
-
-/* FORCE vertical column headers */
+/* ===== Vertical column headers ===== */
 .grid > .cell.header:not(.rowlabel){
-  writing-mode: vertical-rl !important;
-  transform: rotate(180deg) !important;
-  height: 140px !important;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  height: 140px;           /* taller header row */
   white-space: nowrap;
   padding: 6px 0;
   align-items: flex-end;
   justify-content: center;
   font-size: 13px;
 }
-/* =========================
-   MAIN GRID GROUP DIVIDERS
-   ========================= */
 
-/* Make sure main grid background is clean */
-#mainGrid .grid{
-  background-color: #fff;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
-
-/* ===== MAIN GRID DIVIDERS: full height overlay ===== */
+/* ===== MAIN GRID GROUP DIVIDERS (full height) ===== */
+/* Uses label width + 5 cols + 10 cols to draw continuous vertical lines */
 #mainGrid .grid{
   position: relative;
 }
@@ -188,127 +202,35 @@ body{
 #mainGrid .grid::before{
   content: "";
   position: absolute;
-  inset: 0;                 /* top:0 right:0 bottom:0 left:0 */
+  inset: 0;
   pointer-events: none;
-  z-index: 5;
-
-  /* two vertical lines */
+  z-index: 10;
   background-repeat: no-repeat;
   background-image:
     linear-gradient(to right,
-      transparent calc(140px + (5 * var(--cell))),
-      #6d7aa5 calc(140px + (5 * var(--cell))),
-      #6d7aa5 calc(140px + (5 * var(--cell)) + 4px),
-      transparent calc(140px + (5 * var(--cell)) + 4px)
+      transparent calc(var(--labelw) + (5 * var(--cell))),
+      var(--dividerColor) calc(var(--labelw) + (5 * var(--cell))),
+      var(--dividerColor) calc(var(--labelw) + (5 * var(--cell)) + var(--divider)),
+      transparent calc(var(--labelw) + (5 * var(--cell)) + var(--divider))
     ),
     linear-gradient(to right,
-      transparent calc(140px + (10 * var(--cell))),
-      #6d7aa5 calc(140px + (10 * var(--cell))),
-      #6d7aa5 calc(140px + (10 * var(--cell)) + 4px),
-      transparent calc(140px + (10 * var(--cell)) + 4px)
+      transparent calc(var(--labelw) + (10 * var(--cell))),
+      var(--dividerColor) calc(var(--labelw) + (10 * var(--cell))),
+      var(--dividerColor) calc(var(--labelw) + (10 * var(--cell)) + var(--divider)),
+      transparent calc(var(--labelw) + (10 * var(--cell)) + var(--divider))
     );
 }
-/* ===== NEW: ONE CONNECTED WORKSHEET LAYOUT ===== */
 
-.sheet{
-  display: grid;
-  grid-template-columns: 1fr 420px;  /* left big area + right small area */
-  grid-template-rows: auto auto;
-  gap: 18px;
-  align-items: start;
-}
-
-/* Main grid spans full top row */
-.block.main{
-  grid-column: 1 / span 2;
-}
-
-/* Pastry×Treat sits bottom-left */
-.block.pastryTreat{
-  grid-column: 1;
-  grid-row: 2;
-}
-
-/* Treat×Flavour sits bottom-right */
-.block.treatFlavour{
-  grid-column: 2;
-  grid-row: 2;
-}
-
-/* Make blocks look like the newspaper sections (not separate rounded cards) */
-.block{
-  position: relative;
-  background: #fff;
-  border: 1px solid #999;
-  padding: 10px;
-}
-
-/* Remove your old “panel” card styling effect if you want it closer to newspaper */
-.panel{ display:none; } /* (optional) if your old panels still exist somewhere */
-
-/* Side labels (NAME / PASTRY) outside grid, vertical */
-.side-label{
-  position: absolute;
-  left: -42px;               /* pushes outside the box */
-  top: 50%;
-  transform: translateY(-50%) rotate(-90deg);
-  font-weight: 800;
-  letter-spacing: 1px;
-  font-size: 14px;
-}
-
-/* Top category titles (FLAVOUR / TREAT / PASTRY) above the main grid */
-.top-labels{
-  display: grid;
-  grid-template-columns: 5fr 5fr 5fr;   /* 5 columns each group */
-  margin-left: 140px;                  /* match your main grid labelWidth */
-  margin-bottom: 6px;
-  font-weight: 800;
-  font-size: 14px;
-}
-
-.top-label{
-  text-align: center;
-}
-
-/* Titles for the smaller blocks */
-.block-title{
-  font-weight: 800;
-  margin-bottom: 8px;
-}
-
-/* Make the main grid and pastryTreat look “joined” */
-.block.main{
-  padding-bottom: 0;       /* so it can visually connect */
-}
-.block.pastryTreat{
-  margin-top: -18px;       /* pulls it upward to touch the main grid */
-  padding-top: 18px;
-}
-
-/* Keep your grid scroll behaviour */
-.logic-grid{
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding-bottom: 6px;
-}
-
-/* Mobile: stack like the paper */
+/* Mobile */
 @media (max-width: 900px){
+  .top h1{ font-size: 34px; }
+
   .sheet{
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
   }
   .block.main{ grid-column: 1; }
   .block.treatFlavour{ grid-column: 1; grid-row: 3; }
+
   .side-label{ left: -34px; }
 }
-
-
-
-
-
-
-
-
-
