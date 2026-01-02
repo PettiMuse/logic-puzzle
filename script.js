@@ -295,6 +295,21 @@ grids.treatFlavour = buildMatrixGrid({
 });
 
 
+// Restore saved state
+loadAll();
+
+// Clear button
+if (clearBtn) {
+  clearBtn.addEventListener("click", () => {
+    if (!confirm("Clear the entire puzzle?")) return;
+    grids.main.clear();
+    grids.pastryTreat.clear();
+    grids.treatFlavour.clear();
+    localStorage.removeItem(STORAGE_KEY);
+    flashSaved("Cleared");
+  });
+}
+
 
 
 
