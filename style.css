@@ -138,24 +138,6 @@ body{
 .x{ color: #d11; font-weight: 900; }
 .check{ color: #0a8f3c; font-weight: 900; }
 
-/* Default separator (normal cells) */
-.separator{
-  border-right: 4px solid #6d7aa5;
-}
-
-/* Column separators: draw a thick line at the RIGHT edge of the cell */
-.separator{
-  border-right: none !important;
-  border-bottom: none !important;
-  box-shadow: inset -4px 0 0 #6d7aa5 !important;
-}
-
-/* If a separator is on a vertical header cell, still keep it on the RIGHT edge */
-.grid > .cell.header.separator{
-  box-shadow: inset -4px 0 0 #6d7aa5 !important;
-}
-
-
 
 /* Mobile: stack the two small grids */
 @media (max-width: 900px){
@@ -185,6 +167,12 @@ body{
   align-items: flex-end;
   justify-content: center;
   font-size: 13px;
+}
+
+/* Separator ONLY in the MAIN grid, as a vertical line between groups */
+#mainGrid .cell.separator{
+  border-right: 4px solid #6d7aa5 !important;
+  box-shadow: none !important;
 }
 
 
