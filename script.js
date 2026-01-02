@@ -228,28 +228,19 @@ grids.main = buildMatrixGrid({
 grids.pastryTreat = buildMatrixGrid({
   mountId: "pastryTreatGrid",
 
-  // SWAPPED: Treats go down the left as rows
-  rowLabels: TREATS,
+  // EVERYTHING down the left
+  rowLabels: PASTRY_TREAT_ROWS,
 
-  // Pastries go across the top as columns
-  colLabels: PASTRIES,
+  // single empty column just for ticking
+  colLabels: [""],
 
-  bandTitleLeft: "Treat",
-  bandTitleTop: "Pastry",
-  labelWidth: 120,
+  bandTitleLeft: "Pastry / Treat",
+  bandTitleTop: "",          // ❌ nothing across the top
+  labelWidth: 140,
+
   onAnyChange: saveAll
 });
 
-
-grids.treatFlavour = buildMatrixGrid({
-  mountId: "treatFlavourGrid",
-  rowLabels: TREATS,
-  colLabels: FLAVOURS,
-  bandTitleLeft: "Treat",
-  bandTitleTop: "Flavour",
-  labelWidth: 120,
-  onAnyChange: saveAll
-});
 
 // Restore saved state
 loadAll();
@@ -265,6 +256,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
