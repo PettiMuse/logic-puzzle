@@ -12,6 +12,7 @@ const STORAGE_KEY = `logic_puzzle_state_${PUZZLE_ID}`;
 
 const saveStatusEl = document.getElementById("saveStatus");
 const clearBtn = document.getElementById("btnClear");
+console.log("clearBtn found?", !!clearBtn);
 
 // =====================
 // UTILITIES
@@ -292,6 +293,7 @@ grids.treatFlavour = buildMatrixGrid({
   labelWidth: 120,
   onAnyChange: saveAll
 });
+
 
 
 
