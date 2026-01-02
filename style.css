@@ -1,7 +1,8 @@
 :root{
+  --bandHeight: 72px;
   --cell: 44px;
   --divider: 4px;
-  --labelw: 140px;          /* main grid label width (matches JS labelWidth) */
+  --labelw: 140px;  /* main grid label width (matches JS labelWidth) */
   --border: #b9b9b9;
   --header: #dfe6f3;
   --subheader: #cfd9ee;
@@ -198,10 +199,6 @@ body{
 }
 
 
-.band-divider{
-  border-right: var(--divider) solid var(--dividerColor);
-}
-
 .clickable{
   cursor: pointer;
   background: #fff;
@@ -284,9 +281,7 @@ body{
   .side-label{ left: -34px; }
 }
 
-.band-divider{
-  border-right: var(--divider) solid var(--dividerColor);
-}
+
 
 
 
