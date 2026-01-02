@@ -184,10 +184,19 @@ body{
   align-items: center;
 }
 
-/* Put the thick group divider back on the band cells */
+/* Draw the thick divider INSIDE the band cell (doesn't slice text) */
 .cell.band.band-divider{
-  border-right: var(--divider) solid var(--dividerColor) !important;
+  border-right: none !important;
+  box-shadow: inset calc(-1 * var(--divider)) 0 0 0 var(--dividerColor);
 }
+/* BAND CELLS: remove ALL borders so no vertical lines cross the words */
+.cell.band{
+  border: none !important;
+}
+.cell.band{
+  padding-right: 28px;   /* gives space so the divider never hits the last letter */
+}
+
 
 .band-divider{
   border-right: var(--divider) solid var(--dividerColor);
@@ -278,6 +287,7 @@ body{
 .cell.band.band-divider{
   border-right: var(--divider) solid var(--dividerColor) !important;
 }
+
 
 
 
