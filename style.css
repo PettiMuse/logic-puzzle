@@ -156,6 +156,13 @@ body{
   line-height: 1;
   user-select: none;
  }
+/* ========================================= */
+/* Thick vertical dividers between categories */
+/* (Spinach | Eclair) and (Turnover | Choux) */
+/* ========================================= */
+.cell.separator{
+  border-right: var(--divider) solid var(--dividerColor) !important;
+}
 
 .rowlabel{
   width: auto;
@@ -326,6 +333,7 @@ body{
   align-items: center !important;
   justify-content: center !important;
 }
+
 
 
 
