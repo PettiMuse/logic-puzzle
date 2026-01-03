@@ -203,13 +203,12 @@ if (showColHeaders) {
 // =====================
 function saveAll() {
   const data = {
-    main: grids.main.state,
-    pastryTreat: grids.pastryTreat.state,
-    treatFlavour: grids.treatFlavour.state
-  };
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  flashSaved("Saved");
-}
+  main: grids.main.state,
+  pastryTreat: grids.pastryTreat.state,
+  pastryTreatExtra: grids.pastryTreatExtra.state,   // ✅ NEW
+  treatFlavour: grids.treatFlavour.state
+};
+
 
 function loadAll() {
   const raw = localStorage.getItem(STORAGE_KEY);
@@ -338,6 +337,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
