@@ -275,18 +275,23 @@ const PASTRY_TREAT_ROWS = [...PASTRIES, ...TREATS];
 grids.pastryTreat = buildMatrixGrid({
   mountId: "pastryTreatGrid",
 
-  // ✅ this is the key change
-  rowLabels: PASTRY_TREAT_ROWS,
+  // Rows: Pastry + Treat (already correct)
+  rowLabels: [...PASTRIES, ...TREATS],
 
-  // keep the same columns across the top
+  // Columns stay the same width as Treats
   colLabels: TREATS,
 
-  // keep whatever you currently have here
-  bandTitleLeft: "Pastry",
-  bandTitleTop: "Treat",
-  labelWidth: 120,      // or 140, whatever you currently use
+  // ✅ REMOVE the band entirely
+  bandTitleLeft: "",
+  bandTitleTop: "",
+
+  // ✅ REMOVE the header row
+  showColHeaders: false,
+
+  labelWidth: 120,   // keep what you were using
   onAnyChange: saveAll
 });
+
 
 
 // Treat × Flavour (rows: treats, columns: flavours)
@@ -329,6 +334,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
