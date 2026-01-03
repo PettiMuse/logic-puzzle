@@ -296,6 +296,27 @@ grids.pastryTreat = buildMatrixGrid({
   onAnyChange: saveAll
 });
 
+// ✅ NEW: extra 5 columns (Treats) ONLY for the pastry rows (Choux..Shortcrust)
+grids.pastryTreatExtra = buildMatrixGrid({
+  mountId: "pastryTreatExtraGrid",
+
+  // ONLY pastry rows (5 rows)
+  rowLabels: PASTRIES,
+
+  // 5 new columns (Treats)
+  colLabels: TREATS,
+
+  // IMPORTANT: no left label column in this extra block
+  labelWidth: 0,
+
+  bandTitleLeft: "",
+  bandTitleTop: "",
+
+  showColHeaders: false,    // no header row
+  exclusive: true,          // one ✓ per row/col (normal logic grid behaviour)
+
+  onAnyChange: saveAll
+});
 
 
 
@@ -339,6 +360,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
