@@ -275,22 +275,26 @@ const PASTRY_TREAT_ROWS = [...PASTRIES, ...TREATS];
 grids.pastryTreat = buildMatrixGrid({
   mountId: "pastryTreatGrid",
 
-  // Rows: Pastry + Treat (already correct)
+  // rows down the left (as you already have)
   rowLabels: [...PASTRIES, ...TREATS],
 
-  // Columns stay the same width as Treats
-  colLabels: TREATS,
+  // ✅ EXACTLY 5 columns so it lines up under Apple..Spinach
+  colLabels: Array(FLAVOURS.length).fill(""),
 
-  // ✅ REMOVE the band entirely
+  // ✅ remove headers (you already wanted this)
   bandTitleLeft: "",
   bandTitleTop: "",
-
-  // ✅ REMOVE the header row
   showColHeaders: false,
 
-  labelWidth: 120,   // keep what you were using
+  // ✅ MUST MATCH the main grid’s label column width
+  labelWidth: 140,
+
+  // optional: keep this if you want free marking (not exclusive)
+  exclusive: false,
+
   onAnyChange: saveAll
 });
+
 
 
 
@@ -334,6 +338,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
