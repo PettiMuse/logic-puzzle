@@ -197,18 +197,20 @@ if (showColHeaders) {
   render();
   return { state, render, clear };
 }
-
 // =====================
 // SAVE / LOAD
 // =====================
 function saveAll() {
   const data = {
-  main: grids.main.state,
-  pastryTreat: grids.pastryTreat.state,
-  pastryTreatExtra: grids.pastryTreatExtra.state,   // ✅ NEW
-  treatFlavour: grids.treatFlavour.state
-};
+    main: grids.main?.state,
+    pastryTreat: grids.pastryTreat?.state,
+    pastryTreatExtra: grids.pastryTreatExtra?.state,
+    treatFlavour: grids.treatFlavour?.state
+  };
 
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  flashSaved("Saved");
+}
 
 function loadAll() {
   const raw = localStorage.getItem(STORAGE_KEY);
@@ -216,17 +218,21 @@ function loadAll() {
 
   try {
     const data = JSON.parse(raw);
+
     copy(data.main, grids.main.state);
     copy(data.pastryTreat, grids.pastryTreat.state);
-    copy(data.pastryTreatExtra, grids.pastryTreatExtra.state); // ✅ NEW
+    copy(data.pastryTreatExtra, grids.pastryTreatExtra.state);
     copy(data.treatFlavour, grids.treatFlavour.state);
-
 
     grids.main.render();
     grids.pastryTreat.render();
+    grids.pastryTreatExtra.render();
     grids.treatFlavour.render();
+
     flashSaved("Restored");
-  } catch {}
+  } catch (e) {
+    console.error("loadAll failed", e);
+  }
 }
 
 function copy(from, to) {
@@ -235,6 +241,8 @@ function copy(from, to) {
     for (let c = 0; c < to[r].length; c++)
       to[r][c] = from[r]?.[c] || "";
 }
+
+
 
 // =====================
 // BUILD GRIDS
@@ -360,6 +368,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
