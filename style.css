@@ -138,6 +138,20 @@ body{
   background-color: #fff;
   width: max-content;
 }
+/* put the left pastry grid + the new extra grid side-by-side */
+.pastry-row{
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+}
+
+/* remove the double border line between the two grids */
+#pastryTreatExtraGrid .grid{
+  border-left: none;
+}
+#pastryTreatExtraGrid{
+  margin-left: -1px; /* overlaps the 1px border so it looks like one grid */
+}
 
 /* Keep all cells above the divider overlay */
 
@@ -341,6 +355,7 @@ body{
   align-items: center !important;
   justify-content: center !important;
 }
+
 
 
 
