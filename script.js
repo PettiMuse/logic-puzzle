@@ -269,16 +269,25 @@ grids.main = buildMatrixGrid({
 // ===== Mini grid under the main one (like the newspaper) =====
 
 // Pastry × Treat  (rows: pastries, columns: treats)
+// ✅ Pastry rows, then Treat rows (extends down)
+const PASTRY_TREAT_ROWS = [...PASTRIES, ...TREATS];
+
 grids.pastryTreat = buildMatrixGrid({
   mountId: "pastryTreatGrid",
-  rowLabels: PASTRIES,   // Choux..Shortcrust DOWN the left
-  colLabels: TREATS,     // Eclair..Turnover ACROSS the top
+
+  // ✅ this is the key change
+  rowLabels: PASTRY_TREAT_ROWS,
+
+  // keep the same columns across the top
+  colLabels: TREATS,
+
+  // keep whatever you currently have here
   bandTitleLeft: "Pastry",
   bandTitleTop: "Treat",
-  labelWidth: 120,
-  exclusive: true,
+  labelWidth: 120,      // or 140, whatever you currently use
   onAnyChange: saveAll
 });
+
 
 // Treat × Flavour (rows: treats, columns: flavours)
 grids.treatFlavour = buildMatrixGrid({
@@ -320,6 +329,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
