@@ -218,7 +218,9 @@ function loadAll() {
     const data = JSON.parse(raw);
     copy(data.main, grids.main.state);
     copy(data.pastryTreat, grids.pastryTreat.state);
+    copy(data.pastryTreatExtra, grids.pastryTreatExtra.state); // ✅ NEW
     copy(data.treatFlavour, grids.treatFlavour.state);
+
 
     grids.main.render();
     grids.pastryTreat.render();
@@ -331,12 +333,13 @@ if (clearBtn) {
   clearBtn.addEventListener("click", () => {
     if (!confirm("Clear the entire puzzle?")) return;
     grids.main.clear();
-    grids.pastryTreat.clear();
+    grids.pastryTreatExtra.clear();
     grids.treatFlavour.clear();
     localStorage.removeItem(STORAGE_KEY);
     flashSaved("Cleared");
   });
 }
+
 
 
 
