@@ -273,17 +273,32 @@ grids.main = buildMatrixGrid({
   onAnyChange: saveAll
 });
 
-grids.pastryTreat = buildMatrixGrid({
-  mountId: "pastryTreatGrid",
-  rowLabels: [...PASTRIES, ...TREATS],
-  colLabels: Array(FLAVOURS.length).fill(""),
+// Top (yellow): Pastry rows only, 5 columns wide (aligned to Apple..Spinach)
+grids.pastryFlavour = buildMatrixGrid({
+  mountId: "pastryFlavourGrid",
+  rowLabels: PASTRIES,                              // Choux..Shortcrust
+  colLabels: Array(FLAVOURS.length).fill(""),       // 5 columns
   bandTitleLeft: "",
   bandTitleTop: "",
   showColHeaders: false,
   labelWidth: 140,
-  exclusive: true, //now when you tick the rest of the line will auto fill x's in that 5 x 10 area
+  exclusive: true,                                  // ✓ auto-X within yellow ONLY
   onAnyChange: saveAll
 });
+
+// Bottom (blue): Treat rows only, 5 columns wide (aligned to Apple..Spinach)
+grids.treatFlavourLeft = buildMatrixGrid({
+  mountId: "treatFlavourLeftGrid",
+  rowLabels: TREATS,                                 // Eclair..Turnover
+  colLabels: Array(FLAVOURS.length).fill(""),        // 5 columns
+  bandTitleLeft: "",
+  bandTitleTop: "",
+  showColHeaders: false,
+  labelWidth: 140,
+  exclusive: true,                                   // ✓ auto-X within blue ONLY
+  onAnyChange: saveAll
+});
+
 
 grids.pastryTreatExtra = buildMatrixGrid({
   mountId: "pastryTreatExtraGrid",
@@ -325,6 +340,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
