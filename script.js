@@ -206,14 +206,15 @@ if (showColHeaders) {
 // =====================
 function saveAll() {
   const data = {
-    main: grids.main?.state,
-    pastryTreat: grids.pastryTreat?.state,
-    pastryTreatExtra: grids.pastryTreatExtra?.state,
-    treatFlavour: grids.treatFlavour?.state
-  };
+  main: grids.main.state,
+  pastryFlavour: grids.pastryFlavour.state,
+  treatFlavourLeft: grids.treatFlavourLeft.state,
+  pastryTreatExtra: grids.pastryTreatExtra.state,
+  treatFlavour: grids.treatFlavour.state
+};
+localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+flashSaved("Saved");
 
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  flashSaved("Saved");
 }
 
 function loadAll() {
@@ -223,15 +224,14 @@ function loadAll() {
   try {
     const data = JSON.parse(raw);
 
-    copy(data.main, grids.main.state);
-    copy(data.pastryTreat, grids.pastryTreat.state);
-    copy(data.pastryTreatExtra, grids.pastryTreatExtra.state);
-    copy(data.treatFlavour, grids.treatFlavour.state);
+   copy(data.pastryFlavour, grids.pastryFlavour.state);
+copy(data.treatFlavourLeft, grids.treatFlavourLeft.state);
+copy(data.pastryTreatExtra, grids.pastryTreatExtra.state);
 
-    grids.main.render();
-    grids.pastryTreat.render();
-    grids.pastryTreatExtra.render();
-    grids.treatFlavour.render();
+grids.pastryFlavour.render();
+grids.treatFlavourLeft.render();
+grids.pastryTreatExtra.render();
+
 
     flashSaved("Restored");
   } catch (e) {
@@ -340,6 +340,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
