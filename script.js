@@ -226,7 +226,7 @@ function loadAll() {
     const data = JSON.parse(raw);
 
     copy(data.main, grids.main?.state);
-    copy(data.pastryGrid, grids.pastryGrid?.state);
+    copy(data.pastryTreatGrid, grids.pastryTreatGrid?.state);
     copy(data.pastryTreatExtra, grids.pastryTreatExtra?.state);
     copy(data.treatGrid, grids.treatGrid?.state);
     copy(data.treatFlavour, grids.treatFlavour?.state);
@@ -354,6 +354,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
