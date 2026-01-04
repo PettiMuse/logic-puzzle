@@ -294,12 +294,11 @@ grids.treatGrid = buildMatrixGrid({
   onAnyChange: saveAll
 });
 
-
-// LEFT (YELLOW): Pastry rows (Choux..Shortcrust) × Flavour columns (Apple..Spinach)
-grids.pastryGrid = buildMatrixGrid({
-  mountId: "pastryGrid",
-  rowLabels: PASTRIES,
-  colLabels: FLAVOURS,
+// LEFT (YELLOW): Pastry rows (Choux..Shortcrust) × 5 blank columns (aligned under Apple..Spinach)
+grids.pastryTreatGrid = buildMatrixGrid({
+  mountId: "pastryTreatGrid",                 // ✅ MUST match HTML id
+  rowLabels: PASTRIES,                        // Choux..Shortcrust only
+  colLabels: Array(FLAVOURS.length).fill(""), // 5 columns wide
   bandTitleLeft: "",
   bandTitleTop: "",
   showColHeaders: false,
@@ -307,6 +306,8 @@ grids.pastryGrid = buildMatrixGrid({
   exclusive: true,
   onAnyChange: saveAll
 });
+
+
 
 // EXTRA 5x5 (RIGHT of pastry grid): Pastry rows × Treat columns
 grids.pastryTreatExtra = buildMatrixGrid({
@@ -341,6 +342,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
