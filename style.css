@@ -48,10 +48,6 @@ body{
   background: #eef2ff;
 }
 
-.controls button:hover{
-  background: #eef2ff;
-}
-
 
 .status{ font-weight: 700; }
 .flash{ animation: flash 0.4s ease; }
@@ -447,6 +443,7 @@ body{
 .mini-title{
   display: none !important;
 }
+
 
 
 
