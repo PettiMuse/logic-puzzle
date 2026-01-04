@@ -285,7 +285,7 @@ grids.main = buildMatrixGrid({
 grids.treatGrid = buildMatrixGrid({
   mountId: "treatGrid",
   rowLabels: TREATS,
-  colLabels: FLAVOURS,
+  colLabels: Array(FLAVOURS.length).fill(""),
   bandTitleLeft: "",
   bandTitleTop: "",
   showColHeaders: false,
@@ -293,6 +293,7 @@ grids.treatGrid = buildMatrixGrid({
   exclusive: true,
   onAnyChange: saveAll
 });
+
 
 // LEFT (YELLOW): Pastry rows (Choux..Shortcrust) × Flavour columns (Apple..Spinach)
 grids.pastryGrid = buildMatrixGrid({
@@ -350,5 +351,6 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
