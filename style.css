@@ -36,14 +36,22 @@ body{
   flex-wrap: wrap;
 }
 .controls button{
-  padding: 10px 14px;
+  padding: 8px 12px;
   border: 1px solid #8f9bb8;
-  background: #fff;
-  border-radius: 10px;
+  background: white;
+  border-radius: 8px;
   cursor: pointer;
   font-weight: 700;
 }
-.controls button:hover{ filter: brightness(0.97); }
+
+.controls button:hover{
+  background: #eef2ff;
+}
+
+.controls button:hover{
+  background: #eef2ff;
+}
+
 
 .status{ font-weight: 700; }
 .flash{ animation: flash 0.4s ease; }
@@ -439,6 +447,7 @@ body{
 .mini-title{
   display: none !important;
 }
+
 
 
 
