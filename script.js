@@ -17,6 +17,7 @@ const saveStatusEl = document.getElementById("saveStatus");
 const clearBtn = document.getElementById("btnClear");
 console.log("clearBtn found?", !!clearBtn);
 
+
 // =====================
 // UTILITIES
 // =====================
@@ -353,6 +354,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
