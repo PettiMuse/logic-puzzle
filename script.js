@@ -281,7 +281,7 @@ grids.pastryTreat = buildMatrixGrid({
   bandTitleTop: "",
   showColHeaders: false,
   labelWidth: 140,
-  exclusive: false,
+  exclusive: true, //now when you tick the rest of the line will auto fill x's in that 5 x 10 area
   onAnyChange: saveAll
 });
 
@@ -325,6 +325,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
