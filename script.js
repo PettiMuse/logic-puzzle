@@ -1,4 +1,4 @@
-function (current) {
+function nextState(current) {
   return current === "" ? "check" : current === "check" ? "x" : "";
 }
 // =====================
@@ -199,7 +199,6 @@ if (showColHeaders) {
 
   render();
   return { state, render, clear };
-}
 // =====================
 // SAVE / LOAD
 // =====================
@@ -353,6 +352,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
