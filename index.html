@@ -29,31 +29,35 @@
       <div class="side-label">NAME</div>
       <div id="mainGrid" class="logic-grid"></div>
     </div>
-
-    <!-- JOINED: Treat × Pastry (attached under main) -->
+// seperate pastry and treat grids
     <div class="block pastryTreat">
-      <div class="side-label">PASTRY</div>
+  <div class="side-label">PASTRY</div>
 
-      <!-- these two grids sit next to each other -->
-      <div class="pastry-row">
-        <div id="pastryTreatGrid" class="logic-grid"></div>
-        <div id="pastryTreatExtraGrid" class="logic-grid"></div>
+  <div class="pastry-row">
+    <!-- LEFT STACK (yellow + blue) -->
+    <div class="mini-stack">
+      <div class="mini-section">
+        <div class="mini-title">Pastry</div>
+        <div id="pastryFlavourGrid" class="logic-grid"></div>
+      </div>
+
+      <div class="mini-section">
+        <div class="mini-title">Treat</div>
+        <div id="treatFlavourLeftGrid" class="logic-grid"></div>
       </div>
     </div>
 
-    <!-- SMALL grid (bottom-right) -->
-    <div class="block treatFlavour">
-      <div class="block-title">Treat × Flavour</div>
-      <div id="treatFlavourGrid" class="logic-grid"></div>
-    </div>
-
+    <!-- RIGHT EXTRA BLOCK (your 5×5 treat columns for pastry rows) -->
+    <div id="pastryTreatExtraGrid" class="logic-grid"></div>
   </div>
+</div>
 
 <!-- Load your puzzle JS -->
 <script src="script.js?v=9010" defer></script>
 
 </body>
 </html>
+
 
 
 
