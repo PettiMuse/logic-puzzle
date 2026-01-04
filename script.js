@@ -14,7 +14,7 @@ const PUZZLE_ID = "logic_puzzle_v1";
 const STORAGE_KEY = `logic_puzzle_state_${PUZZLE_ID}`;
 
 const saveStatusEl = document.getElementById("saveStatus");
-const clearBtn = document.getElementById("btnClear");
+const  = document.getElementById("btnClear");
 console.log("clearBtn found?", !!clearBtn);
 
 // =====================
@@ -326,12 +326,13 @@ grids.pastryTreatExtra = buildMatrixGrid({
 loadAll();
 
 // Clear button clears EVERYTHING
+// Clear button
 if (clearBtn) {
   clearBtn.addEventListener("click", () => {
     if (!confirm("Clear the entire puzzle?")) return;
 
-    grids.main?.clear();
-    grids.pastryGrid?.clear();
+    grids.main.clear();
+    grids.pastryTreatGrid?.clear?.(); // if you named it pastryTreat, use that name
     grids.pastryTreatExtra?.clear();
     grids.treatGrid?.clear();
     grids.treatFlavour?.clear();
@@ -340,6 +341,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
