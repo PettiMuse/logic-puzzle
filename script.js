@@ -14,7 +14,7 @@ const PUZZLE_ID = "logic_puzzle_v1";
 const STORAGE_KEY = `logic_puzzle_state_${PUZZLE_ID}`;
 
 const saveStatusEl = document.getElementById("saveStatus");
-const  = document.getElementById("btnClear");
+const clearBtn = document.getElementById("btnClear");
 console.log("clearBtn found?", !!clearBtn);
 
 // =====================
@@ -353,6 +353,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
