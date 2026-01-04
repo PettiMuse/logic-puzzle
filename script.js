@@ -321,6 +321,17 @@ grids.pastryTreatExtra = buildMatrixGrid({
   exclusive: true,
   onAnyChange: saveAll
 });
+// RIGHT: Treat × Flavour grid
+grids.treatFlavour = buildMatrixGrid({
+  mountId: "treatFlavourGrid",
+  rowLabels: TREATS,
+  colLabels: FLAVOURS,
+  bandTitleLeft: "Treat",
+  bandTitleTop: "Flavour",
+  labelWidth: 120,
+  exclusive: true,
+  onAnyChange: saveAll
+});
 
 
 // Restore saved state
@@ -342,6 +353,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
