@@ -207,12 +207,12 @@ if (showColHeaders) {
 // =====================
 function saveAll() {
   const data = {
-    main: grids.main?.state || null,
-    pastryGrid: grids.pastryGrid?.state || null,
-    pastryTreatExtra: grids.pastryTreatExtra?.state || null,
-    treatGrid: grids.treatGrid?.state || null,
-    treatFlavour: grids.treatFlavour?.state || null
-  };
+  main: grids.main?.state || null,
+  pastryTreatGrid: grids.pastryTreatGrid?.state || null,
+  pastryTreatExtra: grids.pastryTreatExtra?.state || null,
+  treatGrid: grids.treatGrid?.state || null,
+  treatFlavour: grids.treatFlavour?.state || null
+};
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   flashSaved("Saved");
@@ -354,6 +354,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
