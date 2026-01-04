@@ -247,7 +247,6 @@ function copy(from, to) {
 }
 
 
-
 // =====================
 // BUILD GRIDS
 // =====================
@@ -255,16 +254,14 @@ const grids = {};
 
 const mainCols = [...FLAVOURS, ...TREATS, ...PASTRIES];
 
-// ---- CATEGORY GROUPS FOR MAIN GRID (THIS GOES HERE) ----
 const groupsMain = [
-  { start: 0, end: FLAVOURS.length - 1 },                               // Flavour: Apple → Spinach
-  { start: FLAVOURS.length, end: FLAVOURS.length + TREATS.length - 1 }, // Treat: Eclair → Turnover
-  { start: FLAVOURS.length + TREATS.length, end: mainCols.length - 1 }  // Pastry: Choux → Shortcrust
+  { start: 0, end: FLAVOURS.length - 1 },
+  { start: FLAVOURS.length, end: FLAVOURS.length + TREATS.length - 1 },
+  { start: FLAVOURS.length + TREATS.length, end: mainCols.length - 1 }
 ];
 
-// PUT THESE TWO LINES HERE:
-const sep1 = FLAVOURS.length - 1;                 // after Spinach
-const sep2 = FLAVOURS.length + TREATS.length - 1; // after Turnover
+const sep1 = FLAVOURS.length - 1;
+const sep2 = FLAVOURS.length + TREATS.length - 1;
 
 grids.main = buildMatrixGrid({
   mountId: "mainGrid",
@@ -276,64 +273,30 @@ grids.main = buildMatrixGrid({
   onAnyChange: saveAll
 });
 
-
-
-// Treat × Pastry grid changed to “all rows down the left”
-// ===== Mini grid under the main one (like the newspaper) =====
-
-// Pastry × Treat  (rows: pastries, columns: treats)
-// ✅ Pastry rows, then Treat rows (extends down)
-const PASTRY_TREAT_ROWS = [...PASTRIES, ...TREATS];
-
 grids.pastryTreat = buildMatrixGrid({
   mountId: "pastryTreatGrid",
-
-  // rows down the left (as you already have)
   rowLabels: [...PASTRIES, ...TREATS],
-
-  // ✅ EXACTLY 5 columns so it lines up under Apple..Spinach
   colLabels: Array(FLAVOURS.length).fill(""),
-
-  // ✅ remove headers (you already wanted this)
   bandTitleLeft: "",
   bandTitleTop: "",
   showColHeaders: false,
-
-  // ✅ MUST MATCH the main grid’s label column width
   labelWidth: 140,
-
-  // optional: keep this if you want free marking (not exclusive)
   exclusive: false,
-
   onAnyChange: saveAll
 });
 
-// ✅ NEW: extra 5 columns (Treats) ONLY for the pastry rows (Choux..Shortcrust)
 grids.pastryTreatExtra = buildMatrixGrid({
   mountId: "pastryTreatExtraGrid",
-
-  // ONLY pastry rows (5 rows)
   rowLabels: PASTRIES,
-
-  // 5 new columns (Treats)
   colLabels: TREATS,
-
-  // IMPORTANT: no left label column in this extra block
   labelWidth: 0,
-
   bandTitleLeft: "",
   bandTitleTop: "",
-
-  showColHeaders: false,    // no header row
-  exclusive: true,          // one ✓ per row/col (normal logic grid behaviour)
-
+  showColHeaders: false,
+  exclusive: true,
   onAnyChange: saveAll
 });
 
-
-
-
-// Treat × Flavour grid (you need this back)
 grids.treatFlavour = buildMatrixGrid({
   mountId: "treatFlavourGrid",
   rowLabels: TREATS,
@@ -341,9 +304,9 @@ grids.treatFlavour = buildMatrixGrid({
   bandTitleLeft: "Treat",
   bandTitleTop: "Flavour",
   labelWidth: 120,
+  exclusive: true,
   onAnyChange: saveAll
 });
-
 
 // Restore saved state
 loadAll();
