@@ -387,6 +387,15 @@ body{
   gap: 0; /* keep grids flush */
 }
 
+.block.pastryTreat {
+  display: flex;
+  align-items: flex-start;
+}
+
+.block.pastryTreat .side-label {
+  margin-right: 10px;
+}
+
 
 
 
