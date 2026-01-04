@@ -356,6 +356,12 @@ body{
   justify-content: center !important;
 }
 
+.pastry-row{
+  display: flex;
+  gap: 0;            /* no gap so it aligns tightly */
+  align-items: flex-start;
+}
+
 
 
 
