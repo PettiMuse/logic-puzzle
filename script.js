@@ -1,3 +1,6 @@
+function nextState(current) {
+  return current === "" ? "check" : current === "check" ? "x" : "";
+}
 // =====================
 // PUZZLE DATA
 // =====================
@@ -369,6 +372,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
