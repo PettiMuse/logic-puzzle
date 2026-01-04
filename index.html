@@ -20,50 +20,53 @@
 </header>
 
 <div class="wrap">
-
-    <!-- ONE connected worksheet area -->
   <div class="sheet">
 
-    <!-- MAIN (Name × [Flavour + Treat + Pastry]) -->
+    <!-- MAIN GRID -->
     <div class="block main">
       <div class="side-label">NAME</div>
       <div id="mainGrid" class="logic-grid"></div>
     </div>
-    
-<!-- UNDER MAIN -->
-<div class="row-under">
 
-  <!-- LEFT SIDE: Pastry + Treat stacked -->
-  <div class="block pastryTreat">
-    <div class="side-label">PASTRY</div>
+    <!-- UNDER MAIN -->
+    <div class="row-under">
 
-    <div class="mini-stack">
+      <!-- LEFT: Pastry + Treat stacked -->
+      <div class="block pastryTreat">
+        <div class="side-label">PASTRY</div>
 
-      <div class="mini-title">Pastry</div>
-      <div class="pastry-row">
-        <div id="pastryGrid" class="logic-grid"></div>
-        <div id="pastryTreatExtraGrid" class="logic-grid"></div>
+        <div class="mini-stack">
+
+          <!-- PASTRY ROWS -->
+          <div class="mini-title">Pastry</div>
+          <div class="pastry-row">
+            <div id="pastryGrid" class="logic-grid"></div>
+            <div id="pastryTreatExtraGrid" class="logic-grid"></div>
+          </div>
+
+          <!-- TREAT ROWS -->
+          <div class="mini-title">Treat</div>
+          <div id="treatGrid" class="logic-grid"></div>
+
+        </div>
       </div>
 
-      <div class="mini-title">Treat</div>
-      <div id="treatGrid" class="logic-grid"></div>
+      <!-- RIGHT: Treat × Flavour -->
+      <div class="block treatFlavour">
+        <div class="block-title">Treat × Flavour</div>
+        <div id="treatFlavourGrid" class="logic-grid"></div>
+      </div>
 
-    </div>
-  </div>
+    </div> <!-- end row-under -->
 
-  <!-- RIGHT SIDE: Treat × Flavour (keep separate) -->
-  <div class="block treatFlavour">
-    <div class="block-title">Treat × Flavour</div>
-    <div id="treatFlavourGrid" class="logic-grid"></div>
-  </div>
+  </div> <!-- end sheet -->
+</div> <!-- end wrap -->
 
-</div>
-
-<!-- Load your puzzle JS -->
 <script src="script.js?v=9010" defer></script>
-
 </body>
+
 </html>
+
 
 
 
