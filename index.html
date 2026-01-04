@@ -21,45 +21,40 @@
 
 <div class="wrap">
 
-  <!-- ONE connected worksheet area -->
+    <!-- ONE connected worksheet area -->
   <div class="sheet">
 
     <!-- MAIN (Name × [Flavour + Treat + Pastry]) -->
     <div class="block main">
       <div class="side-label">NAME</div>
-      
       <div id="mainGrid" class="logic-grid"></div>
     </div>
 
     <!-- JOINED: Treat × Pastry (attached under main) -->
-<div class="block pastryTreat">
-  <div class="side-label">PASTRY</div>
+    <div class="block pastryTreat">
+      <div class="side-label">PASTRY</div>
 
-  <div class="pastry-row">
-  <div id="pastryTreatGrid" class="logic-grid"></div>
-<!-- NEW: extra 5 columns block -->
-<div id="pastryTreatExtraGrid" class="logic-grid"></div>
+      <!-- these two grids sit next to each other -->
+      <div class="pastry-row">
+        <div id="pastryTreatGrid" class="logic-grid"></div>
+        <div id="pastryTreatExtraGrid" class="logic-grid"></div>
+      </div>
+    </div>
 
-
-
-    <!-- SMALL summary grid (bottom-right like the paper) -->
+    <!-- SMALL grid (bottom-right) -->
     <div class="block treatFlavour">
       <div class="block-title">Treat × Flavour</div>
       <div id="treatFlavourGrid" class="logic-grid"></div>
     </div>
 
-    <!-- OPTIONAL: add this later if you want the bottom-right “summary” table like the paper -->
-    <!-- <div class="block summary">...</div> -->
-
   </div>
-</div>
-
 
 <!-- Load your puzzle JS -->
-<script src="script.js?" defer></script>
+<script src="script.js?v=9010" defer></script>
 
 </body>
 </html>
+
 
 
 
