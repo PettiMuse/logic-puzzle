@@ -232,7 +232,8 @@ function loadAll() {
     copy(data.treatFlavour, grids.treatFlavour?.state);
 
     grids.main?.render();
-    grids.pastryGrid?.render();
+    grids.pastryTreatGrid?.render();
+
     grids.pastryTreatExtra?.render();
     grids.treatGrid?.render();
     grids.treatFlavour?.render();
@@ -354,6 +355,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
