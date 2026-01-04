@@ -20,61 +20,65 @@
 </header>
 
 <div class="wrap">
-<div class="sheet">
+  <div class="sheet">
 
-  <!-- MAIN GRID -->
-  <div class="block main">
-    <div class="side-label">NAME</div>
-    <div id="mainGrid" class="logic-grid"></div>
-  </div>
-
-  <!-- UNDER MAIN: LEFT (Pastry/Treat stack) + RIGHT (Treat × Flavour) -->
-  <div class="row-under">
-
-    <!-- LEFT SIDE -->
-    <div class="block pastryTreat">
-      <div class="side-label">PASTRY</div>
-
-      <div class="mini-stack">
-
-        <!-- Pastry rows grid (Choux..Shortcrust down the left, 5 cols wide) -->
-       <div class="mini-section pastry-section">
-  <div class="side-label mini-side">PASTRY</div>
-  <div class="mini-content">
-    <div class="pastry-row">
-      <div id="pastryTreatGrid" class="logic-grid"></div>
-      <div id="pastryTreatExtraGrid" class="logic-grid"></div>
-    </div>
-  </div>
-</div>
-
-
-        <!-- Treat rows grid (Eclair..Turnover down the left) -->
-        <div class="mini-section treat-section">
-  <div class="side-label mini-side">TREAT</div>
-  <div class="mini-content">
-    <div id="treatGrid" class="logic-grid"></div>
-  </div>
-</div>
-
+    <!-- MAIN GRID -->
+    <div class="block main">
+      <div class="side-label">NAME</div>
+      <div id="mainGrid" class="logic-grid"></div>
     </div>
 
-    <!-- RIGHT SIDE -->
-    <div class="block treatFlavour">
-      <div class="block-title">Treat × Flavour</div>
-      <div id="treatFlavourGrid" class="logic-grid"></div>
-    </div>
+    <!-- UNDER MAIN: left stack + right grid -->
+    <div class="row-under">
 
-  </div><!-- /row-under -->
+      <!-- LEFT: Pastry block (top) + Treat block (bottom) -->
+      <div class="block pastryTreat">
 
-</div><!-- /sheet -->
+        <div class="mini-stack">
 
-</div> <!-- end wrap -->
+          <!-- PASTRY SECTION -->
+          <div class="mini-section pastry-section">
+            <div class="side-label mini-side">PASTRY</div>
+
+            <div class="mini-content">
+              <div class="pastry-row">
+                <!-- left 5 columns (blank headers) -->
+                <div id="pastryTreatGrid" class="logic-grid"></div>
+
+                <!-- right extra 5 columns (Eclair..Turnover) -->
+                <div id="pastryTreatExtraGrid" class="logic-grid"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TREAT SECTION -->
+          <div class="mini-section treat-section">
+            <div class="side-label mini-side">TREAT</div>
+
+            <div class="mini-content">
+              <div id="treatGrid" class="logic-grid"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- RIGHT: Treat × Flavour -->
+      <div class="block treatFlavour">
+        <div class="block-title">Treat × Flavour</div>
+        <div id="treatFlavourGrid" class="logic-grid"></div>
+      </div>
+
+    </div><!-- /row-under -->
+
+  </div><!-- /sheet -->
+</div><!-- /wrap -->
 
 <script src="script.js?v=9010" defer></script>
 </body>
 
 </html>
+
 
 
 
