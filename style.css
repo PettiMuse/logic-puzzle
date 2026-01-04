@@ -444,6 +444,29 @@ body{
   display: none !important;
 }
 
+/* =========================
+   FIX: remove scrollbar arrows on the small grids
+   ========================= */
+
+/* Only the MAIN grid should be allowed to scroll horizontally */
+.logic-grid{
+  overflow: visible !important;     /* stops the arrow scrollbars */
+  padding-bottom: 0 !important;
+}
+
+/* Keep scrolling ONLY for the big main grid */
+#mainGrid.logic-grid{
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  padding-bottom: 6px !important;
+}
+
+/* Also: stop the mini grids shrinking (which is what causes the scrollbars) */
+.pastry-row > .logic-grid,
+.mini-content > .logic-grid{
+  flex: 0 0 auto !important;
+}
+
 
 
 
