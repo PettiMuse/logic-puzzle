@@ -316,15 +316,17 @@ if (clearBtn) {
   clearBtn.addEventListener("click", () => {
     if (!confirm("Clear the entire puzzle?")) return;
 
-    grids.main?.clear();
-    grids.pastryTreat?.clear();
-    grids.pastryTreatExtra?.clear();
-    grids.treatFlavour?.clear();
+    grids.main.clear();
+    grids.pastryTreat.clear();          // ✅ ADD THIS
+    if (grids.pastryTreatExtra) grids.pastryTreatExtra.clear(); // ✅ if it exists
+    grids.treatFlavour.clear();
 
     localStorage.removeItem(STORAGE_KEY);
     flashSaved("Cleared");
   });
 }
+
+
 
 
 
