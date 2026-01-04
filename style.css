@@ -356,6 +356,30 @@ body{
   justify-content: center !important;
 }
 
+/* ===== Left stacked Pastry / Treat mini-grids ===== */
+
+.pastry-row{
+  display: flex;
+  align-items: flex-start;
+  gap: 0;                 /* keeps yellow + blue tight */
+}
+
+.mini-stack{
+  display: flex;
+  flex-direction: column; /* stack Pastry over Treat */
+  gap: 0;                 /* no gap between them */
+}
+
+.mini-section{
+  margin: 0;
+}
+
+.mini-title{
+  font-weight: 700;
+  padding: 6px 8px;
+  font-size: 14px;
+}
+
 
 
 
