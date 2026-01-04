@@ -380,6 +380,13 @@ body{
   font-size: 14px;
 }
 
+/* Pastry rows: place extra cells to the RIGHT, not below */
+.pastry-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0; /* keep grids flush */
+}
+
 
 
 
