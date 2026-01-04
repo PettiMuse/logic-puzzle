@@ -246,7 +246,6 @@ function copy(from, to) {
       to[r][c] = from[r]?.[c] || "";
 }
 
-
 // =====================
 // BUILD GRIDS
 // =====================
@@ -254,64 +253,69 @@ const grids = {};
 
 const mainCols = [...FLAVOURS, ...TREATS, ...PASTRIES];
 
+// groups for exclusive behaviour inside the MAIN grid only
 const groupsMain = [
-  { start: 0, end: FLAVOURS.length - 1 },
-  { start: FLAVOURS.length, end: FLAVOURS.length + TREATS.length - 1 },
-  { start: FLAVOURS.length + TREATS.length, end: mainCols.length - 1 }
+  { start: 0, end: FLAVOURS.length - 1 },                               // Apple..Spinach
+  { start: FLAVOURS.length, end: FLAVOURS.length + TREATS.length - 1 }, // Eclair..Turnover
+  { start: FLAVOURS.length + TREATS.length, end: mainCols.length - 1 }  // Choux..Shortcrust
 ];
 
+// thick dividers AFTER Spinach and AFTER Turnover
 const sep1 = FLAVOURS.length - 1;
 const sep2 = FLAVOURS.length + TREATS.length - 1;
 
+// MAIN GRID
 grids.main = buildMatrixGrid({
   mountId: "mainGrid",
   rowLabels: NAMES,
   colLabels: mainCols,
-  bandTitleTop: ["Flavour","Treat","Pastry"],
+  bandTitleTop: ["Flavour", "Treat", "Pastry"],
   addSeparatorsAtColIndex: [sep1, sep2],
   exclusiveGroups: groupsMain,
-  onAnyChange: saveAll
-});
-
-// Top (yellow): Pastry rows only, 5 columns wide (aligned to Apple..Spinach)
-grids.pastryFlavour = buildMatrixGrid({
-  mountId: "pastryFlavourGrid",
-  rowLabels: PASTRIES,                              // Choux..Shortcrust
-  colLabels: Array(FLAVOURS.length).fill(""),       // 5 columns
-  bandTitleLeft: "",
-  bandTitleTop: "",
-  showColHeaders: false,
-  labelWidth: 140,
-  exclusive: true,                                  // ✓ auto-X within yellow ONLY
-  onAnyChange: saveAll
-});
-
-// Bottom (blue): Treat rows only, 5 columns wide (aligned to Apple..Spinach)
-grids.treatFlavourLeft = buildMatrixGrid({
-  mountId: "treatFlavourLeftGrid",
-  rowLabels: TREATS,                                 // Eclair..Turnover
-  colLabels: Array(FLAVOURS.length).fill(""),        // 5 columns
-  bandTitleLeft: "",
-  bandTitleTop: "",
-  showColHeaders: false,
-  labelWidth: 140,
-  exclusive: true,                                   // ✓ auto-X within blue ONLY
-  onAnyChange: saveAll
-});
-
-
-grids.pastryTreatExtra = buildMatrixGrid({
-  mountId: "pastryTreatExtraGrid",
-  rowLabels: PASTRIES,
-  colLabels: TREATS,
-  labelWidth: 0,
-  bandTitleLeft: "",
-  bandTitleTop: "",
-  showColHeaders: false,
   exclusive: true,
   onAnyChange: saveAll
 });
 
+// LEFT (BLUE): Treat rows (Eclair..Turnover) × Flavour columns (Apple..Spinach)
+grids.treatGrid = buildMatrixGrid({
+  mountId: "treatGrid",
+  rowLabels: TREATS,
+  colLabels: FLAVOURS,
+  bandTitleLeft: "",
+  bandTitleTop: "",
+  showColHeaders: false,
+  labelWidth: 140,
+  exclusive: true,
+  onAnyChange: saveAll
+});
+
+// LEFT (YELLOW): Pastry rows (Choux..Shortcrust) × Flavour columns (Apple..Spinach)
+grids.pastryGrid = buildMatrixGrid({
+  mountId: "pastryGrid",
+  rowLabels: PASTRIES,
+  colLabels: FLAVOURS,
+  bandTitleLeft: "",
+  bandTitleTop: "",
+  showColHeaders: false,
+  labelWidth: 140,
+  exclusive: true,
+  onAnyChange: saveAll
+});
+
+// EXTRA 5x5 (RIGHT of pastry grid): Pastry rows × Treat columns
+grids.pastryTreatExtra = buildMatrixGrid({
+  mountId: "pastryTreatExtraGrid",
+  rowLabels: PASTRIES,
+  colLabels: TREATS,
+  bandTitleLeft: "",
+  bandTitleTop: "",
+  showColHeaders: false,
+  labelWidth: 0,     // no label column in this block
+  exclusive: true,
+  onAnyChange: saveAll
+});
+
+// RIGHT: Treat × Flavour (the smaller reference grid)
 grids.treatFlavour = buildMatrixGrid({
   mountId: "treatFlavourGrid",
   rowLabels: TREATS,
@@ -326,27 +330,21 @@ grids.treatFlavour = buildMatrixGrid({
 // Restore saved state
 loadAll();
 
-// Clear button
+// Clear button clears EVERYTHING
 if (clearBtn) {
   clearBtn.addEventListener("click", () => {
     if (!confirm("Clear the entire puzzle?")) return;
 
-   grids.main.clear();
-grids.pastryFlavour.clear();
-grids.treatFlavourLeft.clear();
-grids.pastryTreatExtra.clear();
-grids.treatFlavour.clear();
-localStorage.removeItem(STORAGE_KEY);
-flashSaved("Cleared");
+    grids.main?.clear();
+    grids.pastryGrid?.clear();
+    grids.pastryTreatExtra?.clear();
+    grids.treatGrid?.clear();
+    grids.treatFlavour?.clear();
 
+    localStorage.removeItem(STORAGE_KEY);
+    flashSaved("Cleared");
   });
 }
-
-
-
-
-
-
 
 
 
