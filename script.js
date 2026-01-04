@@ -343,8 +343,8 @@ if (clearBtn) {
   clearBtn.addEventListener("click", () => {
     if (!confirm("Clear the entire puzzle?")) return;
 
-    grids.main.clear();
-    grids.pastryTreatGrid?.clear?.(); // if you named it pastryTreat, use that name
+    grids.main?.clear();
+    grids.pastryTreatGrid?.clear();
     grids.pastryTreatExtra?.clear();
     grids.treatGrid?.clear();
     grids.treatFlavour?.clear();
@@ -353,6 +353,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
