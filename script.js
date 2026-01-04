@@ -25,8 +25,9 @@ function flashSaved(text = "Saved") {
 }
 
 function nextState(current) {
-  return current === "" ? "x" : current === "x" ? "check" : "";
+  return current === "" ? "check" : current === "check" ? "x" : "";
 }
+
 
 function makeCell(text, classes) {
   const d = document.createElement("div");
@@ -368,6 +369,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
