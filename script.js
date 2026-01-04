@@ -332,19 +332,6 @@ grids.pastryTreatExtra = buildMatrixGrid({
 
 
 
-// Treat × Flavour (rows: treats, columns: flavours)
-grids.treatFlavour = buildMatrixGrid({
-  mountId: "treatFlavourGrid",
-  rowLabels: TREATS,     // Eclair..Turnover DOWN the left
-  colLabels: FLAVOURS,   // Apple..Spinach ACROSS the top
-  bandTitleLeft: "Treat",
-  bandTitleTop: "Flavour",
-  labelWidth: 120,
-  exclusive: true,
-  onAnyChange: saveAll
-});
-
-
 
 // Treat × Flavour grid (you need this back)
 grids.treatFlavour = buildMatrixGrid({
@@ -365,13 +352,17 @@ loadAll();
 if (clearBtn) {
   clearBtn.addEventListener("click", () => {
     if (!confirm("Clear the entire puzzle?")) return;
-    grids.main.clear();
-    grids.pastryTreatExtra.clear();
-    grids.treatFlavour.clear();
+
+    grids.main?.clear();
+    grids.pastryTreat?.clear();
+    grids.pastryTreatExtra?.clear();
+    grids.treatFlavour?.clear();
+
     localStorage.removeItem(STORAGE_KEY);
     flashSaved("Cleared");
   });
 }
+
 
 
 
