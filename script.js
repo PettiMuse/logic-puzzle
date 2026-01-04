@@ -321,17 +321,6 @@ grids.pastryTreatExtra = buildMatrixGrid({
   onAnyChange: saveAll
 });
 
-// RIGHT: Treat × Flavour (the smaller reference grid)
-grids.treatFlavour = buildMatrixGrid({
-  mountId: "treatFlavourGrid",
-  rowLabels: TREATS,
-  colLabels: FLAVOURS,
-  bandTitleLeft: "Treat",
-  bandTitleTop: "Flavour",
-  labelWidth: 120,
-  exclusive: true,
-  onAnyChange: saveAll
-});
 
 // Restore saved state
 loadAll();
@@ -351,6 +340,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
