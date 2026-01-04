@@ -1,4 +1,4 @@
-function nextState(current) {
+function (current) {
   return current === "" ? "check" : current === "check" ? "x" : "";
 }
 // =====================
@@ -28,9 +28,7 @@ function flashSaved(text = "Saved") {
   setTimeout(() => saveStatusEl.classList.remove("flash"), 400);
 }
 
-function nextState(current) {
-  return current === "" ? "check" : current === "check" ? "x" : "";
-}
+
 
 
 function makeCell(text, classes) {
@@ -355,6 +353,7 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
 
 
