@@ -67,11 +67,12 @@ body{
 
 .sheet{
   display: grid;
-  grid-template-columns: 1fr 420px;  /* left big area + right small area */
+  grid-template-columns: minmax(760px, 1fr) 420px; /* left won't collapse */
   grid-template-rows: auto auto;
   gap: 18px;
   align-items: start;
 }
+
 
 .block{
   position: relative;
@@ -445,27 +446,35 @@ body{
 }
 
 /* =========================
-   FIX: remove scrollbar arrows on the small grids
+   FIX: scroll only MAIN grid
    ========================= */
 
-/* Only the MAIN grid should be allowed to scroll horizontally */
+/* default: NO scroll on any grid wrapper */
 .logic-grid{
-  overflow: visible !important;     /* stops the arrow scrollbars */
+  overflow: visible !important;
   padding-bottom: 0 !important;
 }
 
-/* Keep scrolling ONLY for the big main grid */
-#mainGrid.logic-grid{
+/* allow scrolling ONLY on the big main grid wrapper */
+.block.main .logic-grid{
   overflow-x: auto !important;
   overflow-y: hidden !important;
   padding-bottom: 6px !important;
 }
 
-/* Also: stop the mini grids shrinking (which is what causes the scrollbars) */
+/* prevent mini grids from shrinking */
+.pastry-row,
+.mini-content{
+  display: flex;
+  align-items: flex-start;
+}
+
 .pastry-row > .logic-grid,
 .mini-content > .logic-grid{
   flex: 0 0 auto !important;
 }
+
+
 
 
 
