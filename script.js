@@ -206,15 +206,15 @@ if (showColHeaders) {
 // =====================
 function saveAll() {
   const data = {
-  main: grids.main.state,
-  pastryFlavour: grids.pastryFlavour.state,
-  treatFlavourLeft: grids.treatFlavourLeft.state,
-  pastryTreatExtra: grids.pastryTreatExtra.state,
-  treatFlavour: grids.treatFlavour.state
-};
-localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-flashSaved("Saved");
+    main: grids.main?.state || null,
+    pastryGrid: grids.pastryGrid?.state || null,
+    pastryTreatExtra: grids.pastryTreatExtra?.state || null,
+    treatGrid: grids.treatGrid?.state || null,
+    treatFlavour: grids.treatFlavour?.state || null
+  };
 
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  flashSaved("Saved");
 }
 
 function loadAll() {
@@ -224,27 +224,33 @@ function loadAll() {
   try {
     const data = JSON.parse(raw);
 
-   copy(data.pastryFlavour, grids.pastryFlavour.state);
-copy(data.treatFlavourLeft, grids.treatFlavourLeft.state);
-copy(data.pastryTreatExtra, grids.pastryTreatExtra.state);
+    copy(data.main, grids.main?.state);
+    copy(data.pastryGrid, grids.pastryGrid?.state);
+    copy(data.pastryTreatExtra, grids.pastryTreatExtra?.state);
+    copy(data.treatGrid, grids.treatGrid?.state);
+    copy(data.treatFlavour, grids.treatFlavour?.state);
 
-grids.pastryFlavour.render();
-grids.treatFlavourLeft.render();
-grids.pastryTreatExtra.render();
-
+    grids.main?.render();
+    grids.pastryGrid?.render();
+    grids.pastryTreatExtra?.render();
+    grids.treatGrid?.render();
+    grids.treatFlavour?.render();
 
     flashSaved("Restored");
   } catch (e) {
-    console.error("loadAll failed", e);
+    console.warn("Load failed:", e);
   }
 }
 
 function copy(from, to) {
   if (!from || !to) return;
-  for (let r = 0; r < to.length; r++)
-    for (let c = 0; c < to[r].length; c++)
+  for (let r = 0; r < to.length; r++) {
+    for (let c = 0; c < to[r].length; c++) {
       to[r][c] = from[r]?.[c] || "";
+    }
+  }
 }
+
 // =====================
 // BUILD GRIDS
 // =====================
@@ -344,4 +350,5 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
 
