@@ -79,7 +79,10 @@ body{
   grid-template-columns: 1fr 420px;
   gap: 18px;
   align-items: start;
+
+  grid-column: 1 / span 2;  /* ← ADD THIS LINE */
 }
+
 
 .block{
   position: relative;
@@ -398,10 +401,14 @@ body{
   gap: 0; /* keep grids flush */
 }
 
-.block.pastryTreat {
+.block.pastryTreat{
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 12px;         /* space between pastry and treat sections */
+  margin-top: 0;
+  padding-top: 10px;
 }
+
 
 .block.pastryTreat .side-label {
   margin-right: 10px;
@@ -469,16 +476,18 @@ body{
 }
 
 /* prevent mini grids from shrinking */
-.pastry-row,
-.mini-content{
+.pastry-row{
   display: flex;
   align-items: flex-start;
 }
 
+
 .pastry-row > .logic-grid,
 .mini-content > .logic-grid{
-  flex: 0 0 auto !important;
+  display: inline-block;   /* prevents shrink + avoids flex layout issues */
 }
+
+
 
 
 
