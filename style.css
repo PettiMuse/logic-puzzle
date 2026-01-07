@@ -73,6 +73,13 @@ body{
   align-items: start;
 }
 
+/* NEW: layout for the area under the main grid */
+.row-under{
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 18px;
+  align-items: start;
+}
 
 .block{
   position: relative;
@@ -89,17 +96,16 @@ body{
 
 /* Pastry×Treat sits bottom-left, pulled up to touch */
 .block.pastryTreat{
-  grid-column: 1;
-  grid-row: 2;
-  margin-top: -18px;
-  padding-top: 18px;
+  margin-top: 0;
+  padding-top: 10px;
 }
+
 
 /* Treat×Flavour sits bottom-right */
 .block.treatFlavour{
-  grid-column: 2;
-  grid-row: 2;
+  /* let row-under grid place it */
 }
+
 
 /* Side labels (NAME / PASTRY) outside grid, vertical */
 .side-label{
@@ -473,6 +479,7 @@ body{
 .mini-content > .logic-grid{
   flex: 0 0 auto !important;
 }
+
 
 
 
