@@ -336,36 +336,6 @@ body{
    Match thickness to 4px
    ========================= */
 
-#mainGrid .grid::before{
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: var(--bandHeight);   /* start below Flavour/Treat/Pastry band */
-  bottom: 0;
-
-  pointer-events: none;
-  z-index: 5;
-
-  background-repeat: no-repeat;
-  background-image:
-    /* after Spinach */
-    linear-gradient(
-      to right,
-      transparent calc(var(--labelw) + (5 * var(--cell))),
-      var(--dividerColor) calc(var(--labelw) + (5 * var(--cell))),
-      var(--dividerColor) calc(var(--labelw) + (5 * var(--cell)) + var(--divider)),
-      transparent calc(var(--labelw) + (5 * var(--cell)) + var(--divider))
-    ),
-    /* after Turnover */
-    linear-gradient(
-      to right,
-      transparent calc(var(--labelw) + (10 * var(--cell))),
-      var(--dividerColor) calc(var(--labelw) + (10 * var(--cell))),
-      var(--dividerColor) calc(var(--labelw) + (10 * var(--cell)) + var(--divider)),
-      transparent calc(var(--labelw) + (10 * var(--cell)) + var(--divider))
-    );
-}
 
 /* Keep pastry headers normal (not vertical) in the small Treat×Pastry grid */
 #pastryTreatGrid .grid > .cell.header:not(.rowlabel){
@@ -508,6 +478,7 @@ body{
   letter-spacing: 1px;
   font-size: 14px;
 }
+
 
 
 
