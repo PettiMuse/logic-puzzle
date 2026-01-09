@@ -273,30 +273,9 @@ body{
 }
 
 /* ================= FULL-HEIGHT DIVIDERS (START BELOW BAND ONLY) ================= */
+/* REMOVE the overlay dividers – they are causing the extra lines */
 #mainGrid .grid::before{
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: var(--bandHeight);   /* START BELOW THE BAND */
-  bottom: 0;
-
-  pointer-events: none;
-  z-index: 1;
-  background-repeat: no-repeat;
-  background-image:
-    linear-gradient(to right,
-      transparent calc(var(--labelw) + (5 * var(--cell))),
-      var(--dividerColor) calc(var(--labelw) + (5 * var(--cell))),
-      var(--dividerColor) calc(var(--labelw) + (5 * var(--cell)) + var(--divider)),
-      transparent calc(var(--labelw) + (5 * var(--cell)) + var(--divider))
-    ),
-    linear-gradient(to right,
-      transparent calc(var(--labelw) + (10 * var(--cell))),
-      var(--dividerColor) calc(var(--labelw) + (10 * var(--cell))),
-      var(--dividerColor) calc(var(--labelw) + (10 * var(--cell)) + var(--divider)),
-      transparent calc(var(--labelw) + (10 * var(--cell)) + var(--divider))
-    );
+  content: none !important;
 }
 
 
@@ -478,6 +457,7 @@ body{
   letter-spacing: 1px;
   font-size: 14px;
 }
+
 
 
 
