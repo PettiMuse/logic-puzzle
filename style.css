@@ -410,9 +410,6 @@ body{
 }
 
 
-.block.pastryTreat .side-label {
-  margin-right: 10px;
-}
 /* ---------- Centre the big side labels (NAME / PASTRY) ---------- */
 .block.main .side-label,
 .block.pastryTreat .side-label {
@@ -485,6 +482,25 @@ body{
 .pastry-row > .logic-grid,
 .mini-content > .logic-grid{
   display: inline-block;   /* prevents shrink + avoids flex layout issues */
+}
+
+/* =========================
+   FIX: PASTRY / TREAT side labels overlap
+   Make each label position relative to its own mini-section
+   ========================= */
+
+.block.pastryTreat .mini-section{
+  position: relative;      /* IMPORTANT: anchor the label to this section */
+}
+
+.block.pastryTreat .mini-section .side-label{
+  position: absolute;
+  left: -42px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  font-weight: 800;
+  letter-spacing: 1px;
+  font-size: 14px;
 }
 
 
