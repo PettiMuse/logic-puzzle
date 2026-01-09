@@ -331,36 +331,42 @@ body{
   box-shadow: none !important;
 }
 
-/* 2) Draw the thick vertical dividers ONLY BELOW the band row (so Flavour/Treat words stay clean),
-      but ON TOP of the grid so they’re clearly visible all the way down. */
+/* =========================
+   MAIN GRID vertical dividers (Spinach + Turnover)
+   Match thickness to 4px
+   ========================= */
+
 #mainGrid .grid::before{
   content: "";
   position: absolute;
   left: 0;
   right: 0;
-
-  /* START BELOW THE BAND */
-  top: var(--bandHeight);
+  top: var(--bandHeight);   /* start below Flavour/Treat/Pastry band */
   bottom: 0;
 
   pointer-events: none;
-  z-index: 999;  /* put dividers above the cells so they are visible */
+  z-index: 5;
 
   background-repeat: no-repeat;
   background-image:
-    linear-gradient(to right,
+    /* after Spinach */
+    linear-gradient(
+      to right,
       transparent calc(var(--labelw) + (5 * var(--cell))),
       var(--dividerColor) calc(var(--labelw) + (5 * var(--cell))),
       var(--dividerColor) calc(var(--labelw) + (5 * var(--cell)) + var(--divider)),
       transparent calc(var(--labelw) + (5 * var(--cell)) + var(--divider))
     ),
-    linear-gradient(to right,
+    /* after Turnover */
+    linear-gradient(
+      to right,
       transparent calc(var(--labelw) + (10 * var(--cell))),
       var(--dividerColor) calc(var(--labelw) + (10 * var(--cell))),
       var(--dividerColor) calc(var(--labelw) + (10 * var(--cell)) + var(--divider)),
       transparent calc(var(--labelw) + (10 * var(--cell)) + var(--divider))
     );
 }
+
 /* Keep pastry headers normal (not vertical) in the small Treat×Pastry grid */
 #pastryTreatGrid .grid > .cell.header:not(.rowlabel){
   writing-mode: horizontal-tb !important;
@@ -502,6 +508,7 @@ body{
   letter-spacing: 1px;
   font-size: 14px;
 }
+
 
 
 
