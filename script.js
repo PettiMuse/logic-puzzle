@@ -206,8 +206,10 @@ const groupsMain = [
   { start: FLAVOURS.length + TREATS.length, end: mainCols.length - 1 }
 ];
 
-const sep1 = FLAVOURS.length - 1;
-const sep2 = FLAVOURS.length + TREATS.length - 1;
+// thick dividers AFTER Spinach (index 4) and AFTER Turnover (index 9)
+const sep1 = 4;  // Spinach
+const sep2 = 9;  // Turnover
+
 
 function saveAll() {
   const data = {
@@ -335,3 +337,4 @@ if (clearBtn) {
     flashSaved("Cleared");
   });
 }
+
