@@ -265,6 +265,12 @@ body{
   writing-mode: horizontal-tb !important;
   transform: none !important;
 }
+/* FIX: header cells are rotated, so border-right appears on the wrong side.
+   For rotated headers, draw the divider using border-left instead. */
+#mainGrid .grid > .cell.header.separator{
+  border-right: 1px solid var(--border) !important;               /* normal grid line */
+  border-left: var(--divider) solid var(--dividerColor) !important; /* divider */
+}
 
 /* ===== MAIN GRID GROUP DIVIDERS (full height) ===== */
 /* Uses label width + 5 cols + 10 cols to draw continuous vertical lines */
@@ -457,6 +463,7 @@ body{
   letter-spacing: 1px;
   font-size: 14px;
 }
+
 
 
 
